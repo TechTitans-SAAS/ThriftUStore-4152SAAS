@@ -1,5 +1,7 @@
 # README
 How to run:
+!!!You need the correct master key to run the credentials
+
 1. cd into ThriftUStore
 2. bundle install
 3. db migrate
