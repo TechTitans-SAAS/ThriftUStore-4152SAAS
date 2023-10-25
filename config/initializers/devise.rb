@@ -1,3 +1,5 @@
+require 'dotenv'
+Dotenv.load
 # frozen_string_literal: true
 
 # Assuming you have not yet modified this file, each configuration option below
@@ -25,7 +27,10 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-  config.omniauth :google_oauth2, Rails.application.credentials.dig(:google_oauth_client_id), Rails.application.credentials.dig(:google_oauth_client_secret)
+  #config.omniauth :google_oauth2, Rails.application.credentials.dig(:google_oauth_client_id), Rails.application.credentials.dig(:google_oauth_client_secret)
+  #puts "see env:"
+  #puts ENV['GOOGLE_CLIENT_ID']
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
