@@ -15,6 +15,7 @@
     <% @items.each do |item| %>
       <tr>
         <td><%= item.title %></td>
+        <td>seller: <%= item.user.full_name %></td>
         <td><%= item.detail %></td>
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>
