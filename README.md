@@ -1,6 +1,6 @@
 # README
 How to run:
-!!!You need the correct master key to run the credentials
+!!!You need to add your own ".env" file with the credentials. The format should follow ".env_example" file. 
 
 1. cd into ThriftUStore
 2. bundle install
