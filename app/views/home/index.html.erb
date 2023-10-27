@@ -1,11 +1,74 @@
-<h1>Hello World</h1>
+<!-- app/views/layouts/application.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ThriftyUStore Home</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
 
-<% if current_user %>
-<h2><%= current_user.email %></h2>
-<%= image_tag(current_user.avatar_url) %>
-<%= link_to "Edit Account", edit_user_registration_path %>
-<%= button_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
-<% else %>
-<%= link_to "Login", new_user_session_path %>
-<%= link_to "Create Account", new_user_registration_path %>
-<% end %>
+<div class="container-fluid">
+
+  <!-- Header -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <%= link_to "ThriftyUStore", root_path, class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <% if current_user %>
+              <li class="nav-item">
+                <%= link_to "My Profile", user_path(current_user), class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "My Items", user_my_items_path(current_user), class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Login", new_user_session_path, class: "btn btn-outline-success" %>
+              </li>
+              <li class="nav-item ml-2">
+                <%= link_to "Register", new_user_registration_path, class: "btn btn-success" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero bg-light py-5">
+    <h1 class="display-4 text-center">Welcome to ThriftyUStore</h1>
+    <p class="lead text-center">
+      Your one-stop marketplace for buying and selling among international students. Discover a community that saves together.
+    </p>
+    <div class="text-center mt-4">
+      <%= link_to "Shop Now", items_path, class: "btn btn-lg btn-primary" %>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer mt-auto py-3 bg-primary text-white text-center">
+    <div class="container">
+      <span>Copyright © <%= Time.now.year %> ThriftyUStore. All rights reserved.</span>
+      <!-- Potential space for social media links/icons -->
+    </div>
+  </footer>
+
+</div>
+
+<!-- Bootstrap and jQuery libraries -->
+<%= javascript_include_tag 'https://code.jquery.com/jquery-3.5.1.slim.min.js', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', 'data-turbolinks-track': 'reload' %>
+
+</body>
+</html>

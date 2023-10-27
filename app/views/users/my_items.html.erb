@@ -1,0 +1,32 @@
+<h1>My Items</h1>
+
+<% if @my_items.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Detail</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @my_items.each do |item| %>
+        <tr>
+          <td><%= item.title %></td>
+          <td><%= item.detail %></td>
+          <td><%= item.price %></td>
+          <td><%= image_tag url_for(item.image) if item.image.attached? %></td>
+          <td>
+            <%= link_to 'Show', item %> |
+            <%= link_to 'Edit', edit_item_path(item) %> |
+            <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You have no items listed.</p>
+<% end %>
+<%= link_to 'New Item', new_item_path %>
+<%= link_to 'Back to Profile', user_path(@user) %>

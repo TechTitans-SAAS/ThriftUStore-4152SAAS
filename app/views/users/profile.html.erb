@@ -1,12 +1,42 @@
-<h1>Users#profile</h1>
-<p>Find me in app/views/users/profile.html.erb</p>
+<!-- app/views/users/profile.html.erb -->
 
-<tbody>
+<div class="profile-page">
+  <h1><%= @user.full_name %>'s Profile</h1>
+
+  <div class="profile-content">
+    <%= image_tag @user.avatar_url, alt: @user.full_name, class: "profile-avatar" if @user.avatar_url.present? %>
+
+    <table class="profile-details">
+      <tr>
+        <th>Full Name:</th>
         <td><%= @user.full_name %></td>
-        <td>email:<%= @user.email %></td>
-        <td>address:<%= @user.address %></td>
-        <td>zip code:<%= @user.zip_code %></td>
-        <td>state:<%= @user.state %></td>
-        <td>country:<%= @user.country %></td>
-        <td>description:<%= @user.description%></td>
-</tbody>
+      </tr>
+      <tr>
+        <th>Email:</th>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <th>Address:</th>
+        <td><%= @user.address %></td>
+      </tr>
+      <tr>
+        <th>Zip Code:</th>
+        <td><%= @user.zip_code %></td>
+      </tr>
+      <tr>
+        <th>State:</th>
+        <td><%= @user.state %></td>
+      </tr>
+      <tr>
+        <th>Country:</th>
+        <td><%= @user.country %></td>
+      </tr>
+      <tr>
+        <th>Description:</th>
+        <td><%= @user.description %></td>
+      </tr>
+    </table>
+  </div>
+
+  <%= link_to 'Edit Profile', edit_user_registration_path, class: "edit-profile-button" %>
+</div>

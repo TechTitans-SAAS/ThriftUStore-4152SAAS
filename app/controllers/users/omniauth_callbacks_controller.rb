@@ -41,8 +41,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #   super(scope)
   # end
   private
-  
+
   def auth
     @auth ||= request.env['omniauth.auth']
+  end
+  
+  def failure
+    # Handle failure scenario
+    flash[:alert] = "Google authentication failed: #{params[:message]}"
+    redirect_to new_user_session_path
   end
 end
