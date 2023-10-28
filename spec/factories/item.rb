@@ -10,7 +10,7 @@ FactoryBot.define do
     user
 
     after(:build) do |item|
-      item.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'image.jpeg')), filename: 'image.jpeg', content_type: 'image/jpeg')
+      item.image.attach(io: File.open(Rails.root.join('spec', 'features', 'files', 'image.jpeg')), filename: 'image.jpeg', content_type: 'image/jpeg')
     end
 
 
