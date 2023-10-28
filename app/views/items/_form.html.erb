@@ -1,11 +1,11 @@
-<%= form_with(model: item) do |form| %>
+<%= form_with model: item, local: true do |form| %>
   <% if item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
 
       <ul>
-        <% item.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
@@ -19,6 +19,18 @@
   <div class="field">
     <%= form.label :detail %>
     <%= form.text_area :detail %>
+  </div>
+
+  <!-- Ensure you have a field for 'price' -->
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price, step: 0.01 %>
+  </div>
+
+  <!-- And a field for uploading an 'image' -->
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
   </div>
 
   <div class="actions">

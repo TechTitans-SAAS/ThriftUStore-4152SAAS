@@ -1,14 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="container mt-4">
+  <!-- Item Image and Owner Info -->
+  <div class="row justify-content-center">
+    <div class="col-md-8 position-relative">
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, class: 'img-fluid rounded' %>
+      <% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @item.title %>
-</p>
 
-<p>
-  <strong>Detail:</strong>
-  <%= @item.detail %>
-</p>
+      <!-- Owner Details in top-right corner below the image -->
+      <div class="position-absolute" style="top: 100%; right: 0;">
+        <% if @item.user.avatar_url.present? %>
+          <%= link_to user_path(@item.user) do %>
+            <%= image_tag @item.user.avatar_url, class: 'img-fluid rounded-circle mr-2', alt: @item.user.full_name, style: "width: 50px; height: 50px;" %>
+          <% end %>
+        <% end %>
+        <strong>Owner:</strong>
+        <%= link_to @item.user.full_name, user_path(@item.user), class: 'ml-2' %>
+      </div>
+    </div>
+  </div>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+  <!-- Item Details -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+      <h3 class="mb-4"><%= @item.title %></h3>
+
+      <div class="mb-3">
+        <strong>Detail:</strong>
+        <p><%= @item.detail %></p>
+      </div>
+
+      <div class="mb-3">
+        <strong>Price:</strong>
+        <p>$<%= @item.price %></p>
+      </div>
+
+      <!-- Back Button -->
+      <%= link_to 'Back', items_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>
+
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
