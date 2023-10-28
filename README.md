@@ -4,7 +4,7 @@ How to run:
 
 1. cd into ThriftUStore
 2. bundle install
-3. db migrate
+3. bin/rails db:migrate
 4. bundle exec rails s
 
 

@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  root 'home#index' #for log
+  get 'home/index', to: 'home#index'
+
+
   resources :items
+  resources :users
+
+  match 'users/:id', to: 'users#profile', via: :get, as: 'user_profile'
+
+
+
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions',
@@ -8,6 +18,6 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get 'user/:id', to: 'users#profile', as: 'user'
-  root 'home#index' #for login
+
+
 end
