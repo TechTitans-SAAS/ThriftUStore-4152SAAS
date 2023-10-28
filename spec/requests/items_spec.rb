@@ -45,12 +45,14 @@ RSpec.describe ItemsController, type: :controller do
 
   describe "Post /items" do
     it "create new item and saved via html" do
-      item_params = { title: 'title6', detail: 'this is detail about item6' }
+      image_file = fixture_file_upload( 'spec/features/files/image.jpeg', 'image/jpeg')
+      item_params = { title: 'title6', detail: 'this is detail about item6', image:image_file, price: 4 }
       post :create, params: { item: item_params }
       expect(response).to redirect_to item_url(6)
     end
     it "create new item and saved via json" do
-      item_params = { title: 'title6', detail: 'this is detail about item6' }
+      image_file = fixture_file_upload( 'spec/features/files/image.jpeg', 'image/jpeg')
+      item_params = { title: 'title6', detail: 'this is detail about item6',image:image_file, price: 4}
       post :create, format: :json, params: { item: item_params }
       expect(response).to have_http_status(:created)
     end
@@ -105,7 +107,7 @@ RSpec.describe ItemsController, type: :controller do
     it "get the page to edit the specific item" do
       delete :destroy, params: { id: 1 }
       expect(Item.exists?(1)).to be_falsey
-      expect(response).to redirect_to(items_url)
+      expect(response).to redirect_to(user_my_items_path(@user_zzc))
       expect(flash[:notice]).to eq('Item was successfully destroyed.')
     end
   end

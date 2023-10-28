@@ -110,7 +110,6 @@
           1,
           4,
           4,
-          null,
           4,
           4,
           3,
@@ -147,14 +146,17 @@
           null,
           null,
           null,
+          null,
           1,
           null,
           1,
+          null,
           7,
           null,
           null,
           null,
           1,
+          null,
           8,
           null,
           null
@@ -167,11 +169,19 @@
           1,
           1,
           null,
+          null,
+          1,
+          0,
+          0,
+          null,
           null
         ]
       },
       "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/models/item.rb": {
         "lines": [
+          1,
+          1,
+          1,
           1,
           1,
           1,
@@ -240,6 +250,12 @@
           null,
           null,
           null,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
           null,
           0,
           null,
@@ -503,6 +519,6 @@
         }
       }
     },
-    "timestamp": 1698458674
+    "timestamp": 1698512744
   }
 }

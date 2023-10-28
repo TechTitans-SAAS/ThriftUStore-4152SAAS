@@ -26,7 +26,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.user = current_user
-
     respond_to do |format|
       if @item.save
         format.html { redirect_to item_url(@item), notice: "Item was successfully created." }
@@ -67,13 +66,13 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      puts ">>> Params: #{params.inspect}"  # This will print the contents of params to your server log.
-
+      # This will print the contents of params to your server log.
       @item = Item.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def item_params
+
       params.require(:item).permit(:title, :detail, :price, :image, :user_id)
     end
 end
