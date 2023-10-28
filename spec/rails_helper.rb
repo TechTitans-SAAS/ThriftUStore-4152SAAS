@@ -13,6 +13,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
+require 'shoulda/matchers'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -42,6 +44,13 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include Devise::Test::ControllerHelpers, type: :controller
+
+
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
+
+
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -70,3 +79,19 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+OmniAuth.config.test_mode = true
+# Simulate a successful Google OAuth2 authentication
+OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
+  provider: 'google_oauth2',
+  uid: 'zz3105',
+  info: {
+    full_name: "Zhicheng Zou",
+    email: 'zz3105@columbia.edu',
+    # Add other necessary info
+  }
+)
+
+# Simulate a failed Google OAuth2 authentication
+OmniAuth.config.mock_auth[:google_oauth2_failure] = :invalid_credentials
+

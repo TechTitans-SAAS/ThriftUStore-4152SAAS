@@ -10,7 +10,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
     user = User.from_omniauth(auth)
-
     if user.present?
       sign_out_all_scopes
       flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
@@ -40,15 +39,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def after_omniauth_failure_path_for(scope)
   #   super(scope)
   # end
+  #
   private
 
   def auth
     @auth ||= request.env['omniauth.auth']
   end
   
-  def failure
-    # Handle failure scenario
-    flash[:alert] = "Google authentication failed: #{params[:message]}"
-    redirect_to new_user_session_path
-  end
+  # def failure
+  #   # Handle failure scenario
+  #   flash[:alert] = "Google authentication failed: #{params[:message]}"
+  #   redirect_to new_user_session_path
+  # end
 end
