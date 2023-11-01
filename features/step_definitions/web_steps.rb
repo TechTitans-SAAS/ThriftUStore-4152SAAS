@@ -208,11 +208,8 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
 end
 
 When('I upload an image') do
-  file_path = Rails.root.join('spec', 'features', 'files', 'image.jpeg')
-  file = File.open(file_path)
-  item = Item.create
-  item.image.attach(io: file, filename: 'image.jpeg', content_type: 'image/jpeg')
-  file.close
+  file_path = Rails.root.join('features', 'Ruby_logo.png')
+  attach_file('Image', file_path, make_visible: true)
 end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
