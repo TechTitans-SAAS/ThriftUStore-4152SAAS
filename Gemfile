@@ -48,6 +48,8 @@ group :development, :test do
   gem "faker"
   gem 'shoulda-matchers'
   gem 'sqlite3'
+  gem 'database_cleaner'
+  gem 'cucumber-rails', require: false
 end
 
 group :production do

@@ -3,6 +3,12 @@ Welcome to **ThriftyUStore** website!
 
 Your one-stop marketplace for buying and selling among international students. Discover a community that saves together.
 
+## Team Members:
+1. Haowen Xu - hx2364
+2. Zhicheng Zou - zz3105
+3. Wenjia Zhang - wz2647
+4. Meixuan Lu - ml4965
+
 
 ## How To Run:
 ***You need to add your own ".env" file with the credentials in order to use Google Authentication.
