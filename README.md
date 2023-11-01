@@ -18,31 +18,17 @@ The format should follow ".env_example" file.***
 2. run ``bundle install`` to install gems
 3. run ``bin/rails db:migrate`` to update database.
 4. run ``bundle exec rails s`` to start the server.
-5. run ``rake spec`` to run the rspec test.
+5. run ``rake spec`` to run the rspec tests
+6. run ``bundle exec cucumber --guess`` to run the cucumber tests.
 
 
-## Deploy Instructions:
+## Deployment:
+
+### Link to Deployment: 
+https://ghoulish-phantom-17472-ad85f4912cba.herokuapp.com/
 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### The database run in Heroku is PostgreSql, the database run in local is sqlite3. Before push to Heroku, run ``heroku run rake db:migrate`` to update the database in the Heroku.
 
-Things you may want to cover:
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
