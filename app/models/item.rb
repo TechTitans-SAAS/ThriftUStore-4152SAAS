@@ -5,4 +5,5 @@ class Item < ApplicationRecord
   validates :title, presence: true, length: { minimum: 5, maximum: 50 }
   validates :detail, presence: true, length: { minimum: 10 } # requiring a minimum length for descriptions
   validates :price, presence: true, numericality: { greater_than: 0 }
+  has_many :comments, dependent: :destroy
 end

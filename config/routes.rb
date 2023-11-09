@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get 'home/index'
-  resources :items
+  
+  resources :items do
+    resources :comments
+  end
+   
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions',
