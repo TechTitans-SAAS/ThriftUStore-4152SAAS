@@ -38,5 +38,7 @@
     </table>
   </div>
 
-  <%= link_to 'Edit Profile', edit_user_registration_path, class: "edit-profile-button" %>
+  <% if current_user == @user %>
+    <%= link_to 'Edit Profile', edit_user_registration_path, class: "edit-profile-button" %>
+  <% end %>
 </div>
