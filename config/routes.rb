@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search', to: 'search#index'
   get 'home/index'
   
   resources :items do
