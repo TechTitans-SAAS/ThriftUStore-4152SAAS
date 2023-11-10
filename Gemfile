@@ -81,3 +81,5 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+
+gem "ransack", "~> 3.0"

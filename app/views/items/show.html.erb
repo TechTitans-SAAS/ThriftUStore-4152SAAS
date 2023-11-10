@@ -35,12 +35,18 @@
         <p>$<%= @item.price %></p>
       </div>
 
+      <div class="container">
+  	<%= render 'comments/form', item: @item %>
+  	<% @comments.each do |comment| %>
+    	  <%= render 'comments/comment', item: @item, comment: comment %>
+  	<% end %>
+      </div>
+
       <!-- Back Button -->
       <%= link_to 'Back', items_path, class: 'btn btn-secondary' %>
     </div>
   </div>
 </div>
-
 
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
