@@ -35,16 +35,22 @@
         <p>$<%= @item.price %></p>
       </div>
 
-      <div class="container">
-  	<%= render 'comments/form', item: @item %>
-  	<% @comments.each do |comment| %>
-    	  <%= render 'comments/comment', item: @item, comment: comment %>
-  	<% end %>
-      </div>
+      <!-- <div class="container"> -->
+        <!-- Form for Submitting New Comment -->
+        <div class="new-comment-form mt-4">
+          <%= render 'comments/form', item: @item, comment: Comment.new %>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section mt-4">
+          <% @item.comments.each do |comment| %>
+            <%= render 'comments/comment', comment: comment, item: @item %>
+          <% end %>
+        </div>
 
       <!-- Back Button -->
       <%= link_to 'Back', items_path, class: 'btn btn-secondary' %>
-    </div>
+    <!-- </div> -->
   </div>
 </div>
 
@@ -53,3 +59,34 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<%= javascript_include_tag 'https://code.jquery.com/jquery-3.5.1.slim.min.js' %>
+<%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js' %>
+<%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.edit-comment-button').forEach(function(button) {
+      button.addEventListener('click', function() {
+        var commentId = this.dataset.commentId;
+        var commentBody = document.querySelector('.comment-' + commentId + ' .comment-body');
+        var editForm = document.querySelector('#edit-comment-form-' + commentId);
+
+        commentBody.classList.add('d-none');
+        editForm.classList.remove('d-none');
+      });
+    });
+
+    document.querySelectorAll('.cancel-edit').forEach(function(button) {
+      button.addEventListener('click', function() {
+        var editForm = this.closest('.edit-comment-form');
+        var commentId = editForm.getAttribute('id').replace('edit-comment-form-', '');
+        var commentBody = document.querySelector('.comment-' + commentId + ' .comment-body');
+
+        editForm.classList.add('d-none');
+        commentBody.classList.remove('d-none');
+      });
+    });
+  });
+
+</script>

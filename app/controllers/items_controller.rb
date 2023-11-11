@@ -5,6 +5,17 @@ class ItemsController < ApplicationController
   # GET /items or /items.json
   def index
     @items = Item.all
+
+    if params[:search].present?
+      search_term = params[:search]
+      # Adjust the following line to fit your database column types and search needs
+      @items = @items.where("title LIKE :search OR detail LIKE :search OR CAST(price AS TEXT) LIKE :search", search: "%#{search_term}%")
+    end
+
+    if params[:sort].present?
+      sort_direction = params[:direction] == 'desc' ? 'desc' : 'asc'
+      @items = @items.order(params[:sort] => sort_direction)
+    end
   end
 
   # GET /items/1 or /items/1.json

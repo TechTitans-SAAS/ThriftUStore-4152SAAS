@@ -2,7 +2,7 @@
   "name": "ThriftUStore",
   "private": true,
   "dependencies": {
-    "@rails/actiontext": "^6.1.7-6",
-    "trix": "^1.2.0"
+    "@rails/actiontext": "6.1.7-6",
+    "trix": "1.2.0"
   }
 }

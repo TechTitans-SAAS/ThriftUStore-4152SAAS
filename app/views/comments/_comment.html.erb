@@ -1,12 +1,25 @@
-<div class="comment-<%= comment.id %> container"
-    style="border: 1px solid black; padding: 1em; margin: 1em;">
-  <%= comment.user.full_name %><br />
-  <span>Posted <%= time_ago_in_words(comment.created_at) %></span>
+<div class="comment-<%= comment.id %> container border p-3 mb-3">
+  <div class="d-flex justify-content-between align-items-center">
+    <div>
+      <%= comment.user.full_name %><br>
+      <small>Posted <%= time_ago_in_words(comment.created_at) %> ago</small>
+    </div>
+    <% if current_user == comment.user %>
+      <div class="button-group">
+        <%= button_to "Delete", [item, comment], class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
+        <%= button_tag "Edit", type: "button", class: "btn btn-primary btn-sm edit-comment-button", data: { comment_id: comment.id } %>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <div class="comment-body">
+    <%= comment.body %> <!-- This displays the comment body -->
+  </div>
+
   <% if current_user == comment.user %>
-    <div class="button-group float-end">
-      <%= button_to "Delete", [item, comment], class:"btn btn-danger", method: :delete %>
+    <!-- Hidden Edit Form -->
+    <div class="edit-comment-form d-none" id="edit-comment-form-<%= comment.id %>">
+      <%= render 'comments/form', comment: comment, item: item %>
     </div>
   <% end %>
-  <hr />
-  <%= comment.body %>
 </div>
