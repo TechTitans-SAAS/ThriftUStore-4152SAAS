@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to item_path(@item), notice: 'Comment has been created.'
     else
-      render 'items/show', alert: 'Comment has not been created.'
+      redirect_to item_path(@item), alert: 'Comment has not been created.'
     end
   end
 
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     if @comment.user == current_user && @comment.update(comment_params)
       redirect_to item_path(@item), notice: 'Comment was successfully updated.'
     else
-      render 'items/show', alert: 'Unable to update comment.'
+      redirect_to item_path(@item), alert: 'Unable to update comment.'
     end
   end
 

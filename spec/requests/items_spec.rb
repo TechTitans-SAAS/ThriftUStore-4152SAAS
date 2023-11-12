@@ -5,19 +5,41 @@ RSpec.describe ItemsController, type: :controller do
     @user_zzc = FactoryBot.create(:user)
     sign_in @user_zzc
     @item_1 = FactoryBot.create(:item, user: @user_zzc)
-    @item_2 = FactoryBot.create(:item, :title => 'title2',:detail => "this is detail about item2", user: @user_zzc, id: 2)
-    @item_3 = FactoryBot.create(:item, :title => 'title3',:detail => "this is detail about item3", user: @user_zzc, id: 3)
-    @item_4 = FactoryBot.create(:item, :title => 'title4',:detail => "this is detail about item4", user: @user_zzc, id: 4)
+    @item_2 = FactoryBot.create(:item, :title => 'title2',:detail => "this is detail about item2", user: @user_zzc, id: 2, price: 9)
+    @item_3 = FactoryBot.create(:item, :title => 'title3',:detail => "this is detail about item3", user: @user_zzc, id: 3, price: 1)
+    @item_4 = FactoryBot.create(:item, :title => 'title4',:detail => "this is detail about item4", user: @user_zzc, id: 4, price: 8)
     @user_zzc2 = FactoryBot.create(:user,:email => "zouzhicheng2001@outlook.com", :id => 2)
-    @item_5 = FactoryBot.create(:item, :title => 'title5',:detail => "this is detail about item5", user: @user_zzc2, id: 5)
+    @item_5 = FactoryBot.create(:item, :title => 'title5',:detail => "this is detail about item5", user: @user_zzc2, id: 5, price: 4)
   end
 
   describe "Get /items" do
-    it "returns all the items associated to all users" do
+    it "returns all the items associated to all users without any query parameters" do
       get :index
       expect(assigns[:items]).to eq([@item_1, @item_2, @item_3, @item_4, @item_5])
       expect(response).to render_template("index")
     end
+
+    context "returns results based on the query" do
+      it "query on item title" do
+        get :index, params: { search: @item_2.title }
+        expect(assigns(:items)).to include(@item_2)
+      end
+      it "query on item detail" do
+        get :index, params: { search: "this is detail about" }
+        expect(assigns[:items]).to eq([@item_1, @item_2, @item_3, @item_4, @item_5])
+      end
+    end
+
+    context "with the sort parameters presented" do
+      it "sorts based on directions and sort" do
+        get :index, params: { sort: 'price', direction: 'desc' }
+        expect(assigns(:items)).to eq([@item_2, @item_4, @item_5, @item_1, @item_3])
+      end
+
+    end
+
+
+
   end
 
   describe "Get /items/:id" do
