@@ -1,10 +1,89 @@
 <!-- app/views/layouts/application.html.erb -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>ThriftyUStore Home</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css', 'data-turbolinks-track': 'reload' %>
+  <style>
+      /* Custom styles go here */
+      body {
+          padding-top: 100px; /* Adjusted to accommodate fixed navbar height */
+          background-color: #393939; /* Dark background */
+          color: #ffffff; /* White text */
+      }
+      header{
+          padding: 0px;
+      }
+      footer{
+          padding: 0px;
+      }
+      .navbar {
+          height: 40px;
+          background-color: #393939; /* Dark navbar background */
+          box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2); /* Adding a subtle shadow */
+      }
+
+
+
+      .navbar-dark .navbar-toggler-icon {
+          background-color: #ffffff; /* White navbar toggler icon */
+      }
+
+      .navbar-nav .nav-item .nav-link {
+          color: #ffffff; /* White text for nav links */
+          transition: color 0.5s ease-in-out; /* Smooth color transition on hover */
+      }
+
+      .navbar-nav .nav-item .nav-link:hover {
+          color: #f0f0f0; /* Lighter white color on hover */
+          background-color: lightgrey;
+          border-radius: 10%;
+      }
+
+      .navbar-brand {
+          color: #ffffff; /* White text */
+      }
+
+      .navbar-brand:hover {
+          color: #f0f0f0; /* Lighter white color on hover */
+          background-color: #393939;
+
+      }
+
+      .hero {
+          background-color: #6e6e6e; /* Orange background */
+      }
+
+      .hero h1,
+      .hero p,
+      .footer span {
+          color: #ffffff; /* White text */
+      }
+
+      .footer {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          background-color: #393939; /* Dark footer background */
+      }
+
+      .btn-outline-light {
+          border-color: #ffffff; /* White border for outline buttons */
+          color: #ffffff; /* White text for outline buttons */
+      }
+
+      .btn-light {
+          background-color: #ffffff; /* White background for solid buttons */
+          color: #393939; /* Dark text for solid buttons */
+      }
+
+      .btn-light:hover,
+      .btn-outline-light:hover {
+          background-color: #6e6e6e; /* Dark background on hover */
+          color: #ffffff; /* White text on hover */
+      }
+  </style>
 </head>
 <body>
 
@@ -12,7 +91,7 @@
 
   <!-- Header -->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <%= link_to "ThriftyUStore", root_path, class: "navbar-brand" %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,10 +111,10 @@
               </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to "Login", new_user_session_path, class: "btn btn-outline-success" %>
+                <%= link_to "Login", new_user_session_path, class: "btn btn-outline-light" %>
               </li>
               <li class="nav-item ml-2">
-                <%= link_to "Register", new_user_registration_path, class: "btn btn-success" %>
+                <%= link_to "Register", new_user_registration_path, class: "btn btn-light" %>
               </li>
             <% end %>
           </ul>
@@ -45,22 +124,23 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero bg-light py-5">
+  <section class="hero py-5">
     <h1 class="display-4 text-center">Welcome to ThriftyUStore</h1>
     <p class="lead text-center">
       Your one-stop marketplace for buying and selling among international students. Discover a community that saves together.
     </p>
     <div class="text-center mt-4">
-      <%= link_to "Shop Now", items_path, class: "btn btn-lg btn-primary" %>
+      <%= link_to "Shop Now", items_path, class: "btn btn-lg btn-light" %>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer mt-auto py-3 bg-primary text-white text-center">
-    <div class="container">
+
+  <footer class="footer py-3 text-white text-center">
+
       <span>Copyright © <%= Time.now.year %> ThriftyUStore. All rights reserved.</span>
       <!-- Potential space for social media links/icons -->
-    </div>
+
   </footer>
 
 </div>
@@ -72,4 +152,3 @@
 
 </body>
 </html>
-

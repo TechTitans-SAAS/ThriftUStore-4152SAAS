@@ -1,39 +1,45 @@
-<%= form_with model: item, local: true do |form| %>
-  <% if item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
 
-      <ul>
-        <% item.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= form_with model: item, local: true, class: "my-4" do |form| %>
+    <% if item.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+        <ul>
+          <% item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group row justify-content-center">
+      <div class="col-md-9">
+        <div class="form-group row mb-3">
+          <div class="col-md-6">
+            <%= form.label :title %>
+            <%= form.text_field :title, class: "form-control" %>
+          </div>
+
+          <div class="col-md-6">
+            <%= form.label :price %>
+            <%= form.number_field :price, step: 1, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :detail %>
+          <%= form.text_area :detail, class: "form-control" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= form.label :image %>
+          <%= form.file_field :image, accept: 'image/jpeg,image/gif,image/png', class: "form-control-file" %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit class: "btn btn-primary" %>
+          <%= link_to 'Back', items_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :detail %>
-    <%= form.text_area :detail %>
-  </div>
-
-  <!-- Ensure you have a field for 'price' -->
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price, step: 0.01 %>
-  </div>
-
-  <!-- And a field for uploading an 'image' -->
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

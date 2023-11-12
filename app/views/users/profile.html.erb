@@ -1,7 +1,7 @@
 <!-- app/views/users/profile.html.erb -->
 
 <div class="profile-page">
-  <h1><%= @user.full_name %>'s Profile</h1>
+  <h1>User Profile</h1>
 
   <div class="profile-content">
     <%= image_tag @user.avatar_url, alt: @user.full_name, class: "profile-avatar" if @user.avatar_url.present? %>
