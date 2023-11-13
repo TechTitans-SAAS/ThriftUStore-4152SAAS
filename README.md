@@ -29,8 +29,8 @@ The format should follow ".env_example" file.***
 2. run ``bundle install`` to install gems
 3. run ``bin/rails db:migrate`` to update database.
 4. run ``bundle exec rails s`` to start the server.
-5. run ``rake spec`` to run the rspec tests
-6. run ``bundle exec cucumber --guess`` to run the cucumber tests.
+5. run ``bundle exec rake spec`` to run the rspec tests
+6. run ``bundle exec rake assets:precompile`` and ``bundle exec cucumber --guess`` to run the cucumber tests.
 
 
 ## Deployment:
