@@ -94,4 +94,3 @@ OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
 
 # Simulate a failed Google OAuth2 authentication
 OmniAuth.config.mock_auth[:google_oauth2_failure] = :invalid_credentials
-
