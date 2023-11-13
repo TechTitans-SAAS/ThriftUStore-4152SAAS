@@ -165,6 +165,7 @@
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.3.0, rbenv: 2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.3.0, rbenv: 2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="timeout (v0.4.0, rbenv: 2.6.6) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="trix (v0.10.1, rbenv: 2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbolinks (v5.2.1, rbenv: 2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbolinks-source (v5.2.0, rbenv: 2.6.6) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v2.0.6, rbenv: 2.6.6) [gem]" level="application" />
@@ -501,10 +502,7 @@
           <RakeTaskImpl description="Run all specs in spec directory (excluding plugin specs)" fullCommand="spec" id="spec" />
           <RakeTaskImpl id="spec">
             <subtasks>
-              <RakeTaskImpl description="Run the code examples in spec/helpers" fullCommand="spec:helpers" id="helpers" />
-              <RakeTaskImpl description="Run the code examples in spec/models" fullCommand="spec:models" id="models" />
               <RakeTaskImpl description="Run the code examples in spec/requests" fullCommand="spec:requests" id="requests" />
-              <RakeTaskImpl description="Run the code examples in spec/views" fullCommand="spec:views" id="views" />
               <RakeTaskImpl description="" fullCommand="spec:prepare" id="prepare" />
               <RakeTaskImpl description="" fullCommand="spec:statsetup" id="statsetup" />
             </subtasks>
