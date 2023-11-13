@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require trix/dist/trix
 //= require_tree .
+//= require trix

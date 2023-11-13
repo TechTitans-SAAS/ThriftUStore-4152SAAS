@@ -13,6 +13,7 @@ Feature: User Profile Management
     And I should see "Country"
     And I should see "Description"
 
+
   Scenario: Edit User Profile Successfully
     When I click the "Edit Profile" button
     Then I should be on the Edit User page

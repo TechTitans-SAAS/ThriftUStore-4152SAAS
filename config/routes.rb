@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :comments
   end
+
    
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
@@ -18,5 +19,6 @@ Rails.application.routes.draw do
   get '/users/:id/my_items', to: 'users#my_items', as: 'user_my_items'
   get 'user/:id', to: 'users#profile', as: 'user'
   root 'home#index' #for log
+  #get 'items/sort/:sort_direction', to: 'items#index', as: :sorted_items
 
 end
