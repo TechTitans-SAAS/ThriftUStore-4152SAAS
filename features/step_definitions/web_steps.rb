@@ -315,6 +315,25 @@ Then('I should see the following items in the table:') do |table|
   expect(actual_data).to eq(expected_data)
 end
 
+Then('I should see items sorted by price in ascending order') do
+  items = all('.item-card')  # Assuming each item is wrapped in a div with class 'item-card'
+
+  # Extract the prices from the items and convert them to floats
+  actual_prices = items.map { |item| item.find('.card-text').text.gsub(/\D/, '').to_f }
+
+  # Check if the prices are in ascending order
+  expect(actual_prices).to eq(actual_prices.sort)
+end
+
+Then('I should see items sorted by title in ascending order') do
+  items = all('.item-card')  # Assuming each item is wrapped in a div with class 'item-card'
+
+  actual_titles = items.map { |item| item.find('.card-title').text }
+
+  expect(actual_titles).to eq(actual_titles.sort)
+end
+
+
 #Then("I should see the following OmniAuth sign-in buttons:") do |table|
   #table.hashes.each do |row|
     #expect(page).to have_button("Sign in with #{row['Provider']}")
@@ -362,3 +381,81 @@ When("I destroy the item {string} on the my items page") do |title|
     click_link("Destroy")
   end
 end
+
+Given('there are the following items:') do |table|
+  table.hashes.each do |item|
+  end
+end
+
+When('I fill in the comment form with {string}') do |comment_text|
+  within('.new-comment-form') do
+    # Wait for the input field to be present and visible
+    find('input[name="comment[body]"]', visible: :all).set(comment_text)
+  end
+end
+
+Given("there is a comment by the user") do
+   # Create a comment by the current user and store it in an instance variable
+   @comment = Comment.create(user: @current_user, body: "This is a test comment.")
+ end
+
+Given("there is a comment by another user") do
+  # Create another user and store it in an instance variable
+  @other_user = User.create(email: "other_user@example.com", password: "password")
+
+  # Sign in the other user
+  visit new_user_session_path
+  fill_in 'Email', with: @other_user.email
+  fill_in 'Password', with: 'password'
+  click_button 'Log in'
+
+  # Create a comment associated with the other user
+  @comment = Comment.create(user: @other_user, body: "This is a test comment by another user.")
+end
+
+
+Given("there is a user in the database") do
+  @user = User.create(email: 'user@example.com', password: 'password')
+end
+
+
+When("I visit the user profile page for user with ID {string}") do |user_id|
+  visit profile_user_path(user_id) # Replace with the actual route
+end
+
+Then("I should see the user's profile information") do
+  user = User.find_by(id: 1) # Replace with the correct user ID
+  expect(page).to have_content(user.email)
+  # Add additional expectations for the user's profile information
+end
+
+
+Given("there are items in the database") do
+  # Create items in the database for testing
+  Item.create(title: "Item A", detail: "Detail A", price: 10.99, user_id: 1)
+  Item.create(title: "Item B", detail: "Detail B", price: 15.99, user_id: 2)
+  # Add more items as needed
+end
+
+
+When('I click the "Sort by Price" button') do
+  click_link("Sort by Price")
+end
+
+When('I click the "Sort by Title" button') do
+  click_link("Sort by Title")
+end
+
+Then('I should see an alert message with the text {string}') do |message|
+  expect(page).to have_css('.alert.alert-danger', text: message)
+end
+
+
+Then('I should see all items') do
+  items = Item.all
+  items.each do |item|
+    expect(page).to have_content(item.title)
+    expect(page).to have_content(item.price)
+  end
+end
+
