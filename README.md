@@ -3,6 +3,17 @@ Welcome to **ThriftyUStore** website!
 
 Your one-stop marketplace for buying and selling among international students. Discover a community that saves together.
 
+![Website Image](app/assets/images/website.png)
+
+## Updates on Sprint2:
+1. Item Comments - We enabled the functionality to allow users to ***add/delete/update*** comments to the items posted to the website.
+2. Search Items - We implemented the search function to match any potential query on the price and item title.
+3. Filter Items - We implemented the filter function to sort the posted items on price and item name.
+4. Refine the CSS style, including using bootstrap to make the webpage visually appealing.
+5. Add navigation header to each page to allow easy access.
+6. Included some simple test data to the database for demonstration.
+7. Enabled Google Oauth2 login.
+
 ## Team Members:
 1. Haowen Xu - hx2364
 2. Zhicheng Zou - zz3105
@@ -28,7 +39,7 @@ The format should follow ".env_example" file.***
 https://ghoulish-phantom-17472-ad85f4912cba.herokuapp.com/
 
 
-#### The database run in Heroku is PostgreSql, the database run in local is sqlite3. Before push to Heroku, run ``heroku run rake db:migrate`` to update the database in the Heroku.
+#### The database run in Heroku is PostgreSql, the database run in local is sqlite3. Before push to Heroku, run ``heroku run rake db:migrate`` to update the database in the Heroku and run ``git heroku push main``.
 
 
 ##### 
