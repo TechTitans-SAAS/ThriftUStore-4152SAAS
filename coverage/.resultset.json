@@ -601,11 +601,11 @@
         ]
       }
     },
-    "timestamp": 1699906425
+    "timestamp": 1699908231
   },
   "Cucumber Features": {
     "coverage": {
-      "/home/meixuan/ThriftUStore-4152SAAS/app/models/user.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/models/user.rb": {
         "lines": [
           1,
           null,
@@ -615,6 +615,7 @@
           null,
           null,
           1,
+          1,
           null,
           1,
           2,
@@ -628,23 +629,23 @@
           null,
           1,
           1,
-          318,
-          318,
-          318,
-          318,
-          318,
+          472,
+          472,
+          472,
+          472,
+          472,
           null,
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/models/application_record.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/models/application_record.rb": {
         "lines": [
           1,
           1,
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/controllers/users/sessions_controller.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/users/sessions_controller.rb": {
         "lines": [
           null,
           null,
@@ -672,7 +673,7 @@
           null,
           null,
           1,
-          22,
+          29,
           null,
           null,
           null,
@@ -683,37 +684,67 @@
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/controllers/application_controller.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          325,
+          null,
+          null
+        ]
+      },
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/helpers/application_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/helpers/application_helper.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/helpers/comments_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/helpers/home_helper.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/helpers/home_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/helpers/items_helper.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/helpers/items_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/helpers/users_helper.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/helpers/search_helper.rb": {
         "lines": [
           1,
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/controllers/home_controller.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/helpers/users_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/models/item.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/home_controller.rb": {
         "lines": [
           1,
           1,
@@ -722,7 +753,7 @@
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/controllers/users_controller.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/users_controller.rb": {
         "lines": [
           1,
           1,
@@ -730,44 +761,46 @@
           8,
           null,
           null,
+          null,
+          null,
           1,
-          25,
-          25,
+          37,
+          37,
           null,
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/models/item.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/items_controller.rb": {
         "lines": [
           1,
           1,
           1,
-          1,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/controllers/items_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          2,
-          null,
           null,
           null,
           1,
           10,
           null,
+          10,
+          1,
+          null,
+          1,
+          null,
+          null,
+          10,
+          2,
+          2,
+          null,
+          null,
           null,
           null,
           1,
-          31,
+          32,
+          32,
+          null,
+          null,
+          null,
+          1,
+          49,
           null,
           null,
           null,
@@ -777,12 +810,12 @@
           null,
           null,
           1,
-          13,
-          13,
-          13,
-          13,
-          14,
-          7,
+          22,
+          22,
+          22,
+          22,
+          32,
+          16,
           null,
           12,
           6,
@@ -820,18 +853,78 @@
           null,
           1,
           null,
-          15,
+          37,
           null,
           null,
           null,
           1,
           null,
-          15,
+          24,
           null,
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/controllers/users/registrations_controller.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/models/comment.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/comments_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          3,
+          3,
+          null,
+          3,
+          3,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          4,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          3,
+          null,
+          null
+        ]
+      },
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/users/registrations_controller.rb": {
         "lines": [
           null,
           null,
@@ -907,7 +1000,7 @@
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/controllers/users/omniauth_callbacks_controller.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/users/omniauth_callbacks_controller.rb": {
         "lines": [
           null,
           null,
@@ -965,79 +1058,37 @@
           null
         ]
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/controllers/users/unlocks_controller.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/mailers/application_mailer.rb": {
         "lines": [
-          null,
-          null,
           0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
+          0,
+          0,
           0
         ],
         "branches": {
         }
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/controllers/users/confirmations_controller.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/jobs/application_job.rb": {
         "lines": [
-          null,
-          null,
           0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
           0
         ],
         "branches": {
         }
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/controllers/users/passwords_controller.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/search_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/users/passwords_controller.rb": {
         "lines": [
           null,
           null,
@@ -1077,7 +1128,79 @@
         "branches": {
         }
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/channels/application_cable/connection.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/users/unlocks_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/controllers/users/confirmations_controller.rb": {
+        "lines": [
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/channels/application_cable/connection.rb": {
         "lines": [
           0,
           0,
@@ -1087,28 +1210,10 @@
         "branches": {
         }
       },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/channels/application_cable/channel.rb": {
+      "/Users/zhichengzou/Desktop/ThriftUStore-4152SAAS/app/channels/application_cable/channel.rb": {
         "lines": [
           0,
           0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/mailers/application_mailer.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/meixuan/ThriftUStore-4152SAAS/app/jobs/application_job.rb": {
-        "lines": [
           0,
           0
         ],
@@ -1116,6 +1221,6 @@
         }
       }
     },
-    "timestamp": 1698943321
+    "timestamp": 1699908255
   }
 }
