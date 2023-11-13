@@ -47,6 +47,11 @@
             <%= render 'comments/comment', comment: comment, item: @item %>
           <% end %>
         </div>
+        <% flash.each do |key, message| %>
+          <div class="alert <%= key == 'notice' ? 'alert-success' : 'alert-danger' %>">
+            <%= message %>
+          </div>
+        <% end %>
 
       <!-- Back Button -->
       <%= link_to 'Back', items_path, class: 'btn btn-secondary' %>
@@ -65,27 +70,33 @@
 <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.edit-comment-button').forEach(function(button) {
-      button.addEventListener('click', function() {
-        var commentId = this.dataset.commentId;
+  document.addEventListener('turbolinks:load', function() {
+    document.body.addEventListener('click', function(event) {
+      // Handling the Edit button clicks
+      if (event.target.classList.contains('edit-comment-button')) {
+        var commentId = event.target.dataset.commentId;
         var commentBody = document.querySelector('.comment-' + commentId + ' .comment-body');
         var editForm = document.querySelector('#edit-comment-form-' + commentId);
 
-        commentBody.classList.add('d-none');
-        editForm.classList.remove('d-none');
-      });
-    });
+        if (commentBody && editForm) {
+          commentBody.classList.add('d-none');
+          editForm.classList.remove('d-none');
+        }
+      }
 
-    document.querySelectorAll('.cancel-edit').forEach(function(button) {
-      button.addEventListener('click', function() {
-        var editForm = this.closest('.edit-comment-form');
-        var commentId = editForm.getAttribute('id').replace('edit-comment-form-', '');
-        var commentBody = document.querySelector('.comment-' + commentId + ' .comment-body');
+      // Handling the Cancel button clicks in the edit form
+      if (event.target.classList.contains('cancel-edit')) {
+        var editForm = event.target.closest('.edit-comment-form');
+        if (editForm) {
+          var commentId = editForm.getAttribute('id').replace('edit-comment-form-', '');
+          var commentBody = document.querySelector('.comment-' + commentId + ' .comment-body');
 
-        editForm.classList.add('d-none');
-        commentBody.classList.remove('d-none');
-      });
+          if (commentBody) {
+            editForm.classList.add('d-none');
+            commentBody.classList.remove('d-none');
+          }
+        }
+      }
     });
   });
 
