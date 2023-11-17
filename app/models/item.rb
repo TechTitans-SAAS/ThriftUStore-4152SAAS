@@ -6,4 +6,6 @@ class Item < ApplicationRecord
   validates :detail, presence: true, length: { minimum: 10 } # requiring a minimum length for descriptions
   validates :price, presence: true, numericality: { greater_than: 0 }
   has_many :comments, dependent: :destroy
+  has_many :wish_list_pairs, foreign_key: 'item_id'
+  has_many :wish_list_users, through: :wish_list_pairs, source: :user
 end
