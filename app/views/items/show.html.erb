@@ -34,7 +34,16 @@
         <strong>Price:</strong>
         <p>$<%= @item.price %></p>
       </div>
-
+      <% if current_user == @item.user && @item.buyer_email.nil? %>
+        <h3>Mark as Sold</h3>
+        <%= form_for @item, url: mark_as_sold_item_path(@item), method: :put do |f| %>
+          <%= f.label :buyer_email, "Buyer's Email:" %>
+          <%= f.text_field :buyer_email %>
+          <%= f.submit "Mark as Sold", class: 'btn btn-primary' %>
+        <% end %>
+      <% else %>
+        <p>This item is already marked as sold.</p>
+      <% end %>
       <!-- <div class="container"> -->
         <!-- Form for Submitting New Comment -->
         <div class="new-comment-form mt-4">

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     member do
       post 'add_to_wish_list', to: 'wish_list#add_to_wish_list'
       delete 'remove_from_wish_list', to: 'wish_list#remove_from_wish_list'
+      put 'mark_as_sold'
     end
   end
    

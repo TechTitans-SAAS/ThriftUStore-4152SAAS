@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_16_201402) do
+ActiveRecord::Schema.define(version: 2023_11_21_185705) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2023_11_16_201402) do
     t.integer "user_id", null: false
     t.decimal "price", precision: 10, scale: 2
     t.string "image"
+    t.string "buyer_email"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -105,6 +106,7 @@ ActiveRecord::Schema.define(version: 2023_11_16_201402) do
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
   add_foreign_key "items", "users"
+  add_foreign_key "items", "users", column: "buyer_email", primary_key: "email"
   add_foreign_key "wish_list_pairs", "items"
   add_foreign_key "wish_list_pairs", "users"
 end
