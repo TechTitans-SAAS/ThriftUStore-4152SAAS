@@ -46,6 +46,14 @@ class ItemsController < ApplicationController
     redirect_to item_path(@item)
   end
   
+  def update_rating
+    @item = Item.find(params[:id])
+    @item.update(rating: params[:rating])
+
+    redirect_to item_path(@item)
+  end
+  
+  
   # POST /items or /items.json
   def create
     @item = Item.new(item_params)

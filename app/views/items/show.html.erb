@@ -44,6 +44,17 @@
       <% else %>
         <p>This item is already marked as sold.</p>
       <% end %>
+      <% if not @item.rating.nil? %>
+        <p>Rating: <%= @item.rating %>/5</p>
+      <% end %>
+      <% if current_user.email == @item.buyer_email %>
+        <%= form_tag update_rating_item_path(@item), method: :patch do %>
+          <%= label_tag :rating %>
+          <%= number_field_tag :rating, @item.rating, in: 1..5 %>
+
+          <%= submit_tag 'Submit Rating' %>
+        <% end %>
+      <% end %>
       <!-- <div class="container"> -->
         <!-- Form for Submitting New Comment -->
         <div class="new-comment-form mt-4">

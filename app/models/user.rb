@@ -32,4 +32,11 @@ class User < ApplicationRecord
   def likes?(item)
     self.wish_list_items.any? and self.wish_list_items.exists?(id: item.id)
   end
+  
+  def average_item_rating
+    items_with_ratings = items.where.not(rating: nil)
+    return 0 if items_with_ratings.empty?
+
+    return items_with_ratings.average(:rating).round(2)
+  end
 end
