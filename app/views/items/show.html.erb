@@ -34,7 +34,27 @@
         <strong>Price:</strong>
         <p>$<%= @item.price %></p>
       </div>
+      <% if current_user == @item.user && @item.buyer_email.nil? %>
+        <h3>Mark as Sold</h3>
+        <%= form_for @item, url: mark_as_sold_item_path(@item), method: :put do |f| %>
+          <%= f.label :buyer_email, "Buyer's Email:" %>
+          <%= f.text_field :buyer_email %>
+          <%= f.submit "Mark as Sold", class: 'btn btn-primary' %>
+        <% end %>
+      <% else %>
+        <p>This item is already marked as sold.</p>
+      <% end %>
+      <% if not @item.rating.nil? %>
+        <p>Rating: <%= @item.rating %>/5</p>
+      <% end %>
+      <% if current_user.email == @item.buyer_email %>
+        <%= form_tag update_rating_item_path(@item), method: :patch do %>
+          <%= label_tag :rating %>
+          <%= number_field_tag :rating, @item.rating, in: 1..5 %>
 
+          <%= submit_tag 'Submit Rating' %>
+        <% end %>
+      <% end %>
       <!-- <div class="container"> -->
         <!-- Form for Submitting New Comment -->
         <div class="new-comment-form mt-4">
@@ -53,6 +73,13 @@
           </div>
         <% end %>
 
+      <!-- Like/Unlike Button -->
+      <% if current_user && current_user.likes?(@item) %>
+        <%= link_to 'Unlike', remove_from_wish_list_item_path(current_user, @item), method: :delete, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to 'Like', add_to_wish_list_item_path, method: :post, class: 'btn btn-primary' %>
+      <% end %>
+      <p>Number of likes: <%= @item.wish_list_users.count %></p>
       <!-- Back Button -->
       <%= link_to 'Back', items_path, class: 'btn btn-secondary' %>
     <!-- </div> -->

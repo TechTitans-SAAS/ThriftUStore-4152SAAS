@@ -1,0 +1,13 @@
+<h1>Wishlist for <%= @user.full_name %></h1>
+
+<% if @wish_list_items.any? %>
+  <ul>
+    <% @wish_list_items.each do |wish_list_item| %>
+      <li><%= Item.find(wish_list_item.id).title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No items in the wishlist.</p>
+<% end %>
+
+<%= link_to 'Back', user_path(@user) %>

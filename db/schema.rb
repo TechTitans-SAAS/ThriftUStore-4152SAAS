@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_08_194128) do
+ActiveRecord::Schema.define(version: 2023_11_22_011656) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2023_11_08_194128) do
     t.string "content_type"
     t.text "metadata"
     t.string "service_name", null: false
-    t.bigint "byte_size", null: false
-    t.string "checksum", null: false
+    t.integer "byte_size", null: false
+    t.string "checksum"
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2023_11_08_194128) do
     t.integer "user_id", null: false
     t.decimal "price", precision: 10, scale: 2
     t.string "image"
+    t.string "buyer_email"
+    t.integer "rating"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
@@ -91,9 +93,21 @@ ActiveRecord::Schema.define(version: 2023_11_08_194128) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "wish_list_pairs", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_wish_list_pairs_on_item_id"
+    t.index ["user_id"], name: "index_wish_list_pairs_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
   add_foreign_key "items", "users"
+  add_foreign_key "items", "users", column: "buyer_email", primary_key: "email"
+  add_foreign_key "wish_list_pairs", "items"
+  add_foreign_key "wish_list_pairs", "users"
 end

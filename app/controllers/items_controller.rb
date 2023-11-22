@@ -34,6 +34,26 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def mark_as_sold
+    @item = Item.find(params[:id])
+    buyer_email = params[:buyer_email]
+
+    if @item.update(item_params) && @item.save
+      flash[:notice] = "Item marked as sold."
+    else
+      flash[:alert] = "Failed to mark item as sold."
+    end
+    redirect_to item_path(@item)
+  end
+  
+  def update_rating
+    @item = Item.find(params[:id])
+    @item.update(rating: params[:rating])
+
+    redirect_to item_path(@item)
+  end
+  
+  
   # POST /items or /items.json
   def create
     @item = Item.new(item_params)
@@ -85,6 +105,6 @@ class ItemsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def item_params
 
-      params.require(:item).permit(:title, :detail, :price, :image, :user_id)
+      params.require(:item).permit(:title, :detail, :price, :image, :user_id, :buyer_email)
     end
 end
