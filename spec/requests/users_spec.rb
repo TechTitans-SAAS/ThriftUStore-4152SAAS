@@ -31,4 +31,6 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns[:my_items]).to eq([@item_1, @item_2])
     end
   end
+
+
 end

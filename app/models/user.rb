@@ -37,6 +37,5 @@ class User < ApplicationRecord
     items_with_ratings = items.where.not(rating: nil)
     return 0 if items_with_ratings.empty?
 
-    return items_with_ratings.average(:rating).round(2)
   end
 end

@@ -167,6 +167,17 @@ RSpec.describe ItemsController, type: :controller do
 
   end
 
+  describe "/items/:id/update_rating" do
+    context 'successfully update the rating' do
+      it 'updates the item rating and redirects to the item path' do
+        @item_rating = FactoryBot.create(:item, :title => 'title2',:detail => "this is detail about item2", user: @user_zzc, id: 6, price: 9)
+        put :update_rating, params: { id: @item_rating.id, rating: 4 }
+        @item_rating.reload
+        expect(@item_rating.rating).to eq(4)
+        expect(response).to redirect_to(item_path(@item_rating))
+      end
+    end
+  end
 end
 
 

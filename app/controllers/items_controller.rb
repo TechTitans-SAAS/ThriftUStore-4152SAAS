@@ -60,7 +60,6 @@ class ItemsController < ApplicationController
   def update_rating
     @item = Item.find(params[:id])
     @item.update(rating: params[:rating])
-
     redirect_to item_path(@item)
   end
   
