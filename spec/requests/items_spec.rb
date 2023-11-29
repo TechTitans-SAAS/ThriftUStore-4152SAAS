@@ -9,7 +9,7 @@ RSpec.describe ItemsController, type: :controller do
     @item_3 = FactoryBot.create(:item, :title => 'title3',:detail => "this is detail about item3", user: @user_zzc, id: 3, price: 1)
     @item_4 = FactoryBot.create(:item, :title => 'title4',:detail => "this is detail about item4", user: @user_zzc, id: 4, price: 8)
     @user_zzc2 = FactoryBot.create(:user,:email => "zouzhicheng2001@outlook.com", :id => 2)
-    @item_5 = FactoryBot.create(:item, :title => 'title5',:detail => "this is detail about item5", user: @user_zzc2, id: 5, price: 4)
+    @item_5 = FactoryBot.create(:item, :title => 'title5',:detail => "this is detail about item5", user: @user_zzc2, id: 5, price: 4, buyer: @user_zzc)
   end
 
   describe "Get /items" do
@@ -37,9 +37,6 @@ RSpec.describe ItemsController, type: :controller do
       end
 
     end
-
-
-
   end
 
   describe "Get /items/:id" do
@@ -132,6 +129,42 @@ RSpec.describe ItemsController, type: :controller do
       expect(response).to redirect_to(user_my_items_path(@user_zzc))
       expect(flash[:notice]).to eq('Item was successfully destroyed.')
     end
+  end
+
+
+  describe "mark item as sold /items/:id/mark_as_sold" do
+    it 'updates the item successfully and redirects to the item path' do
+      put :mark_as_sold, params: {id:2, item: {buyer_email: 'zouzhicheng2001@outlook.com'} }
+      @item_2.reload
+      expect(flash[:notice]).to eq 'Item marked as sold.'
+      expect(@item_2.buyer.email).to eq 'zouzhicheng2001@outlook.com'
+
+      expect(response).to redirect_to(item_path(@item_2))
+    end
+
+
+    it 'update failed case -  buyer email not exist in database' do
+      put :mark_as_sold, params: {id:2, item: {buyer_email: 'zouzhicheng2001@outasdlook.com'} }
+      @item_2.reload
+      expect(flash[:alert]).to eq "Invalid Email address!"
+      expect(response).to redirect_to(item_path(@item_2))
+    end
+
+    it 'update failed case -  buyer email not passed to controller' do
+      put :mark_as_sold, params: {id:2, item: {title: 'newtitle'} }
+      @item_2.reload
+      expect(flash[:alert]).to eq "You should input an Email!"
+    end
+
+    it 'update failed case -  universal case' do
+      allow_any_instance_of(Item).to receive(:save).and_return(false)
+      put :mark_as_sold, params: {id:2, item: {buyer_email: 'zouzhicheng2001@outlook.com'} }
+      @item_2.reload
+      expect(flash[:alert]).to eq "Failed to mark item as sold."
+    end
+
+
+
   end
 
 end

@@ -36,7 +36,18 @@ class ItemsController < ApplicationController
 
   def mark_as_sold
     @item = Item.find(params[:id])
-    buyer_email = params[:buyer_email]
+    buyer_email = params[:item][:buyer_email]
+    user = User.find_by(email: buyer_email)
+
+    if not buyer_email.present?
+      flash[:alert] = "You should input an Email!"
+      redirect_to item_path(@item) and return
+    end
+
+    if not user.present?
+      flash[:alert] = "Invalid Email address!"
+      redirect_to item_path(@item) and return
+    end
 
     if @item.update(item_params) && @item.save
       flash[:notice] = "Item marked as sold."
@@ -104,7 +115,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-
       params.require(:item).permit(:title, :detail, :price, :image, :user_id, :buyer_email)
     end
 end
