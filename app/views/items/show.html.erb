@@ -16,14 +16,77 @@
         <% end %>
         <strong>Owner:</strong>
         <%= link_to @item.user.full_name, user_path(@item.user), class: 'ml-2' %>
+
+        <!-- Display Seller's Average Rating -->
+        <% average_rating = @item.user.average_item_rating %>
+        <% if average_rating > 0 %>
+          <p>
+            <% full_stars = average_rating.floor %>
+            <% half_star = (average_rating % 1) >= 0.5 ? 1 : 0 %>
+            <% empty_stars = 5 - full_stars - half_star %>
+
+            <% full_stars.times do %>
+              <i class="fas fa-star checked"></i>
+            <% end %>
+            <% if half_star > 0 %>
+              <i class="fas fa-star-half-alt checked"></i>
+            <% end %>
+            <% empty_stars.times do %>
+              <i class="far fa-star"></i>
+            <% end %>
+
+            Seller Rating: <%= average_rating.round(1) %>/5
+          </p>
+        <% end %>
       </div>
+      <% if @item.buyer_email %>
+        <div class="alert alert-warning mt-3">
+          <strong>This item has been sold.</strong>
+        </div>
+      <% end %>
+
     </div>
   </div>
 
   <!-- Item Details -->
   <div class="row justify-content-center mt-4">
     <div class="col-md-8">
-      <h3 class="mb-4"><%= @item.title %></h3>
+      <h3 class="mb-4">
+        <%= @item.title %>
+        <% if current_user && !current_user.likes?(@item) %>
+        <%= link_to add_to_wish_list_item_path, method: :post, class: 'btn btn-primary ml-2', id: 'add-wishlist-button' do %>
+          <i class="fas fa-heart"></i> Add to Wish List
+        <% end %>
+        <% elsif current_user %>
+        <%= link_to remove_from_wish_list_item_path(id: @item.id), method: :delete, class: 'btn btn-danger ml-2', id: 'remove-wishlist-button' do %>
+          <i class="fas fa-heart"></i> Remove from Wish List
+        <% end %>
+
+        <% end %>
+      </h3>
+      <!-- Display Item Rating -->
+          <% if @item.rating %>
+          <div class="d-flex align-items-center mt-3">
+          <!-- Display item rating -->
+          <% 5.times do |i| %>
+            <% if i < @item.rating %>
+              <i class="fas fa-star checked"></i> <!-- Filled star -->
+            <% else %>
+              <i class="far fa-star"></i> <!-- Unfilled star -->
+            <% end %>
+          <% end %>
+          <p class="ml-2 mb-0">Rating: <%= @item.rating %>/5</p>
+
+          <!-- "Submit Rating" form immediately next to item rating -->
+          <% if current_user.email == @item.buyer_email %>
+            <%= form_tag update_rating_item_path(@item), method: :patch, class: 'ml-2 d-flex align-items-center' do %>
+              <%= number_field_tag :rating, @item.rating, in: 1..5 %>
+              <%= submit_tag 'Submit Rating', class: 'btn btn-primary ml-2' %>
+            <% end %>
+          <% end %>
+        </div>
+          <% end %>
+
 
       <div class="mb-3">
         <strong>Detail:</strong>
@@ -41,20 +104,12 @@
           <%= f.text_field :buyer_email %>
           <%= f.submit "Mark as Sold", class: 'btn btn-primary' %>
         <% end %>
-      <% else %>
-        <p>This item is already marked as sold.</p>
       <% end %>
-      <% if not @item.rating.nil? %>
-        <p>Rating: <%= @item.rating %>/5</p>
-      <% end %>
-      <% if current_user.email == @item.buyer_email %>
-        <%= form_tag update_rating_item_path(@item), method: :patch do %>
-          <%= label_tag :rating %>
-          <%= number_field_tag :rating, @item.rating, in: 1..5 %>
 
-          <%= submit_tag 'Submit Rating' %>
-        <% end %>
-      <% end %>
+
+
+
+
       <!-- <div class="container"> -->
         <!-- Form for Submitting New Comment -->
         <div class="new-comment-form mt-4">
@@ -72,14 +127,6 @@
             <%= message %>
           </div>
         <% end %>
-
-      <!-- Like/Unlike Button -->
-      <% if current_user && current_user.likes?(@item) %>
-        <%= link_to 'Unlike', remove_from_wish_list_item_path(current_user, @item), method: :delete, class: 'btn btn-danger' %>
-      <% else %>
-        <%= link_to 'Like', add_to_wish_list_item_path, method: :post, class: 'btn btn-primary' %>
-      <% end %>
-      <p>Number of likes: <%= @item.wish_list_users.count %></p>
       <!-- Back Button -->
       <%= link_to 'Back', items_path, class: 'btn btn-secondary' %>
     <!-- </div> -->
@@ -87,14 +134,13 @@
 </div>
 
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+  .fa-star.checked,
+  .fa-star-half-alt.checked {
+    color: gold;
+  }
+</style>
 
-<%= javascript_include_tag 'https://code.jquery.com/jquery-3.5.1.slim.min.js' %>
-<%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js' %>
-<%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %>
 
 <script>
   document.addEventListener('turbolinks:load', function() {
@@ -124,6 +170,48 @@
           }
         }
       }
+    });
+    // AJAX for adding to wishlist
+    $('#add-wishlist').off('click').on('click', function(e) {
+      console.log("Add to wishlist clicked"); // Just for debugging
+
+      e.preventDefault();
+      var url = $(this).attr('href');
+
+      $.ajax({
+        url: url,
+        method: 'POST',
+        dataType: 'json', // Expecting a JSON response
+        contentType: 'application/json', // Sending JSON content
+        success: function(response) {
+          $('#wishlist-button').text('Added to Wishlist');
+          $('#flash-messages').html('<div class="alert alert-success">' + response.message + '</div>');
+        },
+        error: function() {
+          $('#flash-messages').html('<div class="alert alert-danger">An error occurred.</div>');
+        }
+      });
+    });
+
+    // AJAX for removing from wishlist
+    $('#remove-wishlist').off('click').on('click', function(e) {
+      e.preventDefault();
+      var url = $(this).attr('href');
+
+      $.ajax({
+        url: url,
+        method: 'DELETE',
+        dataType: 'json', // Expecting a JSON response
+        contentType: 'application/json', // Sending JSON content
+        success: function(response) {
+          $('#flash-messages').html('<div class="alert alert-success">' + response.message + '</div>');
+          $('#remove-wishlist').hide();
+          $('#add-wishlist').show();
+        },
+        error: function() {
+          $('#flash-messages').html('<div class="alert alert-danger">An error occurred.</div>');
+        }
+      });
     });
   });
 

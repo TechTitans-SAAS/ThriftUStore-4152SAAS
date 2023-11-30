@@ -6,17 +6,27 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
 
+    # Search logic
     if params[:search].present?
       search_term = params[:search]
-      # Adjust the following line to fit your database column types and search needs
       @items = @items.where("title LIKE :search OR detail LIKE :search OR CAST(price AS TEXT) LIKE :search", search: "%#{search_term}%")
     end
 
+    # Sorting logic
     if params[:sort].present?
       sort_direction = params[:direction] == 'desc' ? 'desc' : 'asc'
-      @items = @items.order(params[:sort] => sort_direction)
+
+      if params[:sort] == 'owner_rating'
+        # Here, we need a more complex query
+        @items = Item.joins(:user)
+                     .select('items.*, (SELECT AVG(rating) FROM items i WHERE i.user_id = users.id AND rating IS NOT NULL) as avg_rating')
+                     .order("avg_rating #{sort_direction}, items.id")
+      else
+        @items = @items.order(params[:sort] => sort_direction)
+      end
     end
   end
+
 
   # GET /items/1 or /items/1.json
   def show
@@ -56,14 +66,14 @@ class ItemsController < ApplicationController
     end
     redirect_to item_path(@item)
   end
-  
+
   def update_rating
     @item = Item.find(params[:id])
     @item.update(rating: params[:rating])
     redirect_to item_path(@item)
   end
-  
-  
+
+
   # POST /items or /items.json
   def create
     @item = Item.new(item_params)
@@ -96,6 +106,8 @@ class ItemsController < ApplicationController
   # DELETE /items/1 or /items/1.json
   def destroy
     @item = Item.find(params[:id])
+    @item.wish_list_pairs.destroy_all
+
     @item.destroy
 
     respond_to do |format|
