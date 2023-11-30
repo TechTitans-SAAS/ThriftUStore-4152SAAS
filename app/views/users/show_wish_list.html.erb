@@ -1,13 +1,30 @@
-<h1>Wishlist for <%= @user.full_name %></h1>
+<div class="container mt-4">
+  <h1 class="mb-4">Wishlist for <%= @user.full_name %></h1>
 
-<% if @wish_list_items.any? %>
-  <ul>
-    <% @wish_list_items.each do |wish_list_item| %>
-      <li><%= Item.find(wish_list_item.id).title %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No items in the wishlist.</p>
-<% end %>
+  <% if @wish_list_items.any? %>
+    <div class="row">
+      <% @wish_list_items.each do |wish_list_item| %>
+        <% item = Item.find(wish_list_item.id) %>
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card shadow item-card">
+            <%= link_to item_path(item), class: 'text-decoration-none stretched-link' do %>
+              <% if item.image.attached? %>
+                <%= image_tag url_for(item.image), class: "card-img-top item-image", alt: item.title %>
+              <% else %>
+                <div class="item-placeholder text-muted">No Image</div>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title text-primary"><%= item.title %></h5>
+                <p class="card-text"><strong>Price:</strong> $<%= item.price %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No items in the wishlist.</p>
+  <% end %>
 
-<%= link_to 'Back', user_path(@user) %>
+  <%= link_to 'Back', user_path(@user), class: 'btn btn-secondary mt-3' %>
+</div>
