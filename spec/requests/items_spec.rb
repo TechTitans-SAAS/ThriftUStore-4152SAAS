@@ -44,14 +44,16 @@ RSpec.describe ItemsController, type: :controller do
       end
     end
 
-    # context "sorts based on owner_rating and desc - some items are rated" do
-    #   it "sorts based on owner_rating and desc" do
-    #     @item_6 = FactoryBot.create(:item, :title => 'title6',:detail => "this is detail about item6", user: @user_zzc2, id: 6, price: 12, buyer: @user_zzc, rating: 4)
-    #     @item_7 = FactoryBot.create(:item, :title => 'title7',:detail => "this is detail about item7", user: @user_zzc2, id: 7, price: 7, buyer: @user_zzc, rating: 5)
-    #     get :index, params: { sort: 'owner_rating', direction: 'desc' }
-    #     expect(assigns(:items)).to eq([@item_7, @item_6, @item_1, @item_2, @item_3, @item_4, @item_5])
-    #   end
-    # end
+    context "sorts based on owner_rating and desc - rating by owner's score" do
+      it "sorts based on owner_rating and desc if the owner does not have rating yet, just leave it on the back of the result" do
+        @item_6 = FactoryBot.create(:item, :title => 'title6',:detail => "this is detail about item6", user: @user_zzc2, id: 6, price: 12, buyer: @user_zzc, rating: 4)
+        @item_7 = FactoryBot.create(:item, :title => 'title7',:detail => "this is detail about item7", user: @user_zzc2, id: 7, price: 7, buyer: @user_zzc, rating: 5)
+        @user_zzc3 = FactoryBot.create(:user,:email => "test@outlook.com", :id => 3)
+        @item_8 = FactoryBot.create(:item, :title => 'title8',:detail => "this is detail about item8", user: @user_zzc3, id: 8, price: 12, buyer: @user_zzc2, rating: 3)
+        get :index, params: { sort: 'owner_rating', direction: 'desc' }
+        expect(assigns(:items)).to eq([@item_5, @item_6, @item_7, @item_8, @item_1, @item_2, @item_3, @item_4])
+      end
+    end
   end
 
   describe "Get /items/:id" do
