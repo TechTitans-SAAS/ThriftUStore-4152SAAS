@@ -35,8 +35,23 @@ RSpec.describe ItemsController, type: :controller do
         get :index, params: { sort: 'price', direction: 'desc' }
         expect(assigns(:items)).to eq([@item_2, @item_4, @item_5, @item_1, @item_3])
       end
-
     end
+
+    context "sorts based on owner_rating and desc - no item is rated" do
+      it "sorts based on owner_rating and desc" do
+        get :index, params: { sort: 'owner_rating', direction: 'desc' }
+        expect(assigns(:items)).to eq([@item_1, @item_2, @item_3, @item_4, @item_5])
+      end
+    end
+
+    # context "sorts based on owner_rating and desc - some items are rated" do
+    #   it "sorts based on owner_rating and desc" do
+    #     @item_6 = FactoryBot.create(:item, :title => 'title6',:detail => "this is detail about item6", user: @user_zzc2, id: 6, price: 12, buyer: @user_zzc, rating: 4)
+    #     @item_7 = FactoryBot.create(:item, :title => 'title7',:detail => "this is detail about item7", user: @user_zzc2, id: 7, price: 7, buyer: @user_zzc, rating: 5)
+    #     get :index, params: { sort: 'owner_rating', direction: 'desc' }
+    #     expect(assigns(:items)).to eq([@item_7, @item_6, @item_1, @item_2, @item_3, @item_4, @item_5])
+    #   end
+    # end
   end
 
   describe "Get /items/:id" do
@@ -136,7 +151,6 @@ RSpec.describe ItemsController, type: :controller do
     it 'updates the item successfully and redirects to the item path' do
       put :mark_as_sold, params: {id:2, item: {buyer_email: 'zouzhicheng2001@outlook.com'} }
       @item_2.reload
-      expect(flash[:notice]).to eq 'Item marked as sold.'
       expect(@item_2.buyer.email).to eq 'zouzhicheng2001@outlook.com'
 
       expect(response).to redirect_to(item_path(@item_2))

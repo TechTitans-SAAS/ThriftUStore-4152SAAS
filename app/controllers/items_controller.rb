@@ -59,9 +59,7 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item) and return
     end
 
-    if @item.update(item_params) && @item.save
-      flash[:notice] = "Item marked as sold."
-    else
+    if not (@item.update(item_params) && @item.save)
       flash[:alert] = "Failed to mark item as sold."
     end
     redirect_to item_path(@item)
