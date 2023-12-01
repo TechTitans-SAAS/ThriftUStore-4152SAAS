@@ -65,9 +65,9 @@
         <% end %>
       </h3>
       <!-- Display Item Rating -->
-          <% if @item.rating %>
-          <div class="d-flex align-items-center mt-3">
-          <!-- Display item rating -->
+      <div class="d-flex align-items-center mt-3">
+        <!-- Display item rating -->
+        <% if @item.rating.present? %>
           <% 5.times do |i| %>
             <% if i < @item.rating %>
               <i class="fas fa-star checked"></i> <!-- Filled star -->
@@ -76,16 +76,17 @@
             <% end %>
           <% end %>
           <p class="ml-2 mb-0">Rating: <%= @item.rating %>/5</p>
+        <% end %>
 
-          <!-- "Submit Rating" form immediately next to item rating -->
-          <% if current_user.email == @item.buyer_email %>
-            <%= form_tag update_rating_item_path(@item), method: :patch, class: 'ml-2 d-flex align-items-center' do %>
-              <%= number_field_tag :rating, @item.rating, in: 1..5 %>
-              <%= submit_tag 'Submit Rating', class: 'btn btn-primary ml-2' %>
-            <% end %>
+        <!-- "Submit Rating" form immediately next to item rating -->
+        <% if current_user.email == @item.buyer_email %>
+          <%= form_tag update_rating_item_path(@item), method: :patch, class: 'ml-2 d-flex align-items-center' do %>
+            <%= number_field_tag :rating, @item.rating, in: 1..5 %>
+            <%= submit_tag 'Submit Rating', class: 'btn btn-primary ml-2' %>
           <% end %>
-        </div>
-          <% end %>
+        <% end %>
+      </div>
+
 
 
       <div class="mb-3">

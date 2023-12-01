@@ -9,6 +9,7 @@
           <th>Detail</th>
           <th>Price</th>
           <th>Image</th>
+          <th>Buyer Email</th> <!-- Added this column -->
           <th>Actions</th>
         </tr>
       </thead>
@@ -24,6 +25,9 @@
               <% else %>
                 <div class="text-muted">No Image</div>
               <% end %>
+            </td>
+            <td>
+              <%= item.buyer_email if item.buyer_email.present? %>
             </td>
             <td>
               <%= link_to 'Show', item, class: 'btn btn-info btn-sm' %>
