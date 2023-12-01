@@ -24,7 +24,6 @@ RSpec.describe WishListController, type: :controller do
       expect {
         post :add_to_wish_list, params: { id: @item_1.id }, format: :html
       }.not_to change(WishListPair, :count)
-
       expect(response).to redirect_to(item_path(@item_1))
       expect(flash[:notice]).to eq('Item is already in the wish list.')
     end
@@ -38,4 +37,30 @@ RSpec.describe WishListController, type: :controller do
       expect(json_response['added']).to eq(true)
     end
   end
+
+  describe "items/:id/remove_from_wish_list" do
+    it 'removes an item from the wish list for the current user' do
+      @item_1 = FactoryBot.create(:item, user: @user2)
+      @wish_list_pair = FactoryBot.create(:wish_list_pair, user: @user_zzc, item: @item_1)
+
+      expect {
+        delete :remove_from_wish_list, params: { id: @item_1.id }
+      }.to change(WishListPair, :count).by(-1)
+
+      expect(response).to redirect_to(item_path(@item_1))
+      expect(flash[:notice]).to eq('Item removed from wish list!')
+      expect(@user_zzc.wish_list_items).not_to include(@item_1)
+    end
+
+    it 'handles case when item is not found in the wish list' do
+      @item_1 = FactoryBot.create(:item, user: @user2)
+      expect {
+        delete :remove_from_wish_list, params: { id: @item_1.id }
+      }.not_to change(WishListPair, :count)
+
+      expect(response).to redirect_to(item_path(@item_1))
+      expect(flash[:alert]).to eq('Item not found in the wish list.')
+    end
+  end
+
 end
