@@ -32,5 +32,36 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe '#show_wish_list' do
+    context 'when user is authorized' do
+      it 'renders the show_wish_list template and get all the wish list items of the user' do
+        @user_zzc_test = FactoryBot.create(:user,:email => "test_wishlist@outlook.com", :id => 11)
+        @user_zzc_2_test = FactoryBot.create(:user,:email => "test_wishlist2@outlook.com", :id => 12)
+        @item_1 = FactoryBot.create(:item, user: @user_zzc_2_test, id:13)
+        @item_2 = FactoryBot.create(:item, :title => 'title2',:detail => "this is detail about item2", user: @user_zzc_2_test, id: 12)
+        @wish_list_pair = FactoryBot.create(:wish_list_pair, :user => @user_zzc_test, :item => @item_1)
+        sign_in @user_zzc_test
+
+        get :show_wish_list, params: { id: @user_zzc_test.id }
+        expect(response).to render_template('show_wish_list')
+        expect(assigns(:user)).to eq(@user_zzc_test)
+        expect(assigns(:wish_list_items)).to eq(@user_zzc_test.wish_list_items)
+        expect(assigns(:wish_list_items)).to eq([@item_1])
+      end
+    end
+
+    context 'when user is not authorized' do
+      it 'redirects to the current user\'s wish list with an alert' do
+        @user_zzc_test = FactoryBot.create(:user,:email => "test_wishlist@outlook.com", :id => 11)
+        @user_zzc_2_test = FactoryBot.create(:user,:email => "test_wishlist2@outlook.com", :id => 12)
+        sign_in @user_zzc_test
+        get :show_wish_list, params: { id: @user_zzc_2_test.id }
+
+        expect(response).to redirect_to(user_wish_list_path(@user_zzc_test))
+        expect(flash[:alert]).to eq("You are not authorized to view this wishlist.")
+      end
+    end
+  end
+
 
 end
