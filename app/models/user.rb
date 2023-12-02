@@ -38,5 +38,12 @@ class User < ApplicationRecord
     return 0 if items_with_ratings.empty?
     items_with_ratings.average(:rating).to_f
   end
-
+  # Override Devise's password_required? method
+  protected
+  def password_required?
+    # If both the password and password_confirmation are blank, then we do not require a password.
+    # Otherwise, it's required.
+    return false if password.blank? && password_confirmation.blank?
+    super
+  end
 end
