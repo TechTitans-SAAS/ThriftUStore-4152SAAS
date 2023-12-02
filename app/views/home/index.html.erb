@@ -8,8 +8,7 @@
   <style>
       /* Custom styles go here */
       body {
-          padding-top: 100px; /* Adjusted to accommodate fixed navbar height */
-          background-color: #393939; /* Dark background */
+          background-color: #F5F5F5;
           color: #ffffff; /* White text */
       }
       header{
@@ -18,51 +17,21 @@
       footer{
           padding: 0px;
       }
-      .navbar {
-          height: 40px;
-          background-color: #393939; /* Dark navbar background */
-          box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2); /* Adding a subtle shadow */
-      }
-
-
-
-      .navbar-dark .navbar-toggler-icon {
-          background-color: #ffffff; /* White navbar toggler icon */
-      }
-
-      .navbar-nav .nav-item .nav-link {
-          color: #ffffff; /* White text for nav links */
-          transition: color 0.5s ease-in-out; /* Smooth color transition on hover */
-      }
-
-      .navbar-nav .nav-item .nav-link:hover {
-          color: #f0f0f0; /* Lighter white color on hover */
-          background-color: lightgrey;
-          border-radius: 10%;
-      }
-
-      .navbar-brand {
-          color: #ffffff; /* White text */
-      }
-
-      .navbar-brand:hover {
-          color: #f0f0f0; /* Lighter white color on hover */
-          background-color: #393939;
-
-      }
 
       .hero {
-          background-color: #6e6e6e; /* Orange background */
+          background-color: #6e6e6e;
+          padding-top: 10px;
       }
-
       .hero h1,
       .hero p,
+
+
       .footer span {
           color: #ffffff; /* White text */
       }
 
       .footer {
-          position: fixed;
+
           bottom: 0;
           width: 100%;
           background-color: #393939; /* Dark footer background */
@@ -89,7 +58,7 @@
 
 
   <!-- Hero Section -->
-  <section class="hero py-5">
+  <section class="hero py-5 entry">
     <h1 class="display-4 text-center">Welcome to ThriftyUStore</h1>
     <p class="lead text-center">
       Your one-stop marketplace for buying and selling among international students. Discover a community that saves together.
@@ -98,6 +67,38 @@
       <%= link_to "Shop Now", items_path, class: "btn btn-lg btn-light" %>
     </div>
   </section>
+
+  <section class="mission py-5">
+    <h1 class="display-4 text-center">Our Missions</h1>
+    <p class="lead text-center">
+      Our project aims to address the challenges faced by international students when it comes to buying and selling used goods.
+    </p>
+
+    <p class="lead text-center">
+      Our application aims to provide a platform for international students to find people in a geologically convenient location to trade their goods at a fair price as well as a place where they can look for the stuff they need.
+    </p>
+
+    <p class="lead text-center">
+      This improves the distribution of resources and results in a win-win situation for both buyers and sellers.
+    </p>
+  </section>
+
+
+  <section class="hero py-5 pain-points">
+    <h1 class="display-4 text-center">Pain points</h1>
+    <p class="lead text-center">
+      Out website addresses the following pain points:
+    </p>
+    <ul>
+      <li>International students face a lot of pain points when trading used goods.</li>
+      <li>Current existing solutions such as the Facebook marketplace or WeChat groups don’t provide a separate and complete feature.</li>
+      <li>Often, these solutions lack ways to contact people who can sell or buy in a timely manner.</li>
+      <li>Due to inherent cultural differences and language barriers, international students struggle to find people they can trust.</li>
+      <li>This causes frustration and inconvenience for international students in a new environment.</li>
+      <li>Our project aims to solve these pain points by providing a solution that considers the specific needs of this user group.</li>
+    </ul>
+  </section>
+
 
   <!-- Footer -->
 

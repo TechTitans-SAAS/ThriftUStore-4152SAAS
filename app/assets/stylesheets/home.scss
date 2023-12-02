@@ -98,3 +98,38 @@ footer {
   background-color: #333;
   color: white;
 }
+
+.mission{
+  color:#333
+}
+
+.mission h1, .hero h1{
+  margin-bottom: 30px;
+}
+
+.mission p, .hero p{
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.mission p{
+  margin-bottom: 20px;
+}
+
+.pain-points  ul {
+  font-size: 20px;
+  width: 55%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the list horizontally */
+  text-align: left; /* Align the list items to the left */
+  padding: 0;
+}
+
+.pain-points  li{
+  margin-bottom: 10px;
+}
+
+.pain-points p{
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+

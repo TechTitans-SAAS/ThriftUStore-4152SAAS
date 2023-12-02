@@ -23,9 +23,7 @@
   </head>
 
   <body>
-    <% unless controller_name == 'sessions' && action_name == 'new' %>
-      <%= render 'layouts/navbar' %>
-    <% end %>
+  <%= render 'layouts/navbar' %>
 
     <%= yield %>
   </body>

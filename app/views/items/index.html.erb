@@ -17,7 +17,7 @@
       <%= link_to 'Clear Search', items_path(sort: params[:sort], direction: params[:direction]), class: 'btn btn-warning mb-2 ml-2' %>
     <% end %>
 
-    <div class="buttons mb-4">
+    <div class="buttons mb-4" id= "sort_buttons">
       <%= link_to 'Sort by Price', items_path(search: params[:search], sort: params[:sort] == 'price' && params[:direction] == 'asc' ? nil : 'price', direction: params[:sort] == 'price' && params[:direction] == 'asc' ? nil : 'asc'), class: 'btn btn-link' %>
       <%= link_to 'Sort by Title', items_path(search: params[:search], sort: params[:sort] == 'title' && params[:direction] == 'asc' ? nil : 'title', direction: params[:sort] == 'title' && params[:direction] == 'asc' ? nil : 'asc'), class: 'btn btn-link' %>
       <%= link_to 'Sort by Owner Rating', items_path(search: params[:search], sort: 'owner_rating', direction: params[:sort] == 'owner_rating' && params[:direction] == 'asc' ? 'desc' : 'asc'), class: 'btn btn-link' %>

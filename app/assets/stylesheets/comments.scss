@@ -1,3 +1,11 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.comment-button-group{
+  display: inline-flex; /* Display the container as an inline block */
+  margin-top: 10px; /* Adjust top margin as needed */
+}
+
+.comment-button-group .btn {
+  margin-right: 5px; /* Adjust right margin between buttons as needed */
+}
