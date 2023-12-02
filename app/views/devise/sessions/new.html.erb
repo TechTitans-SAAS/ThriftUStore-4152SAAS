@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+<div class="d-flex justify-content-center align-items-center" style="min-height: 75vh;">
   <div class="text-center">
     <h2 class="mb-4">Log in</h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'needs-validation', novalidate: '' }) do |f| %>
@@ -24,7 +24,7 @@
       </div>
     <% end %>
 
-    <div class="border-top pt-3 mt-3">
+    <div class="border-top pt-3 mt-3" id = "shared_links">
       <%= render "devise/shared/links" %>
     </div>
   </div>

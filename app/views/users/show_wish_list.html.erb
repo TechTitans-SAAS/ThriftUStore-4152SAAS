@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h1 class="mb-4">Wishlist for <%= @user.full_name %></h1>
+  <h1 class="mb-4">Your Wish List <%= @user.full_name %></h1>
 
   <% if @wish_list_items.any? %>
     <div class="row">
@@ -23,8 +23,9 @@
       <% end %>
     </div>
   <% else %>
-    <p>No items in the wishlist.</p>
+    <h3>No items in the wishlist.</h3>
   <% end %>
 
-  <%= link_to 'Back', user_path(@user), class: 'btn btn-secondary mt-3' %>
+  <%= link_to 'Back To Profile', user_path(@user), class: 'btn btn-secondary mt-3 back-button' %>
+  <%= link_to 'Back To Items Page', items_path, class: "btn btn-primary mt-3 back-button " %>
 </div>

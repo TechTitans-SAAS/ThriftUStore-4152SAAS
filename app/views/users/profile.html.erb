@@ -7,7 +7,7 @@
     <%= image_tag @user.avatar_url, alt: @user.full_name, class: "profile-avatar" if @user.avatar_url.present? %>
     <% average_rating = @average_rating %>
     <% if average_rating > 0 %>
-      <p>
+      <p class = 'seller-rating'>
         <% full_stars = average_rating.floor %>
         <% half_star = (average_rating % 1) >= 0.5 ? 1 : 0 %>
         <% empty_stars = 5 - full_stars - half_star %>
@@ -22,7 +22,7 @@
           <i class="far fa-star"></i>
         <% end %>
 
-        Rating: <%= average_rating.round(1) %>/5
+        Your Rating is: <%= average_rating.round(1) %>/5
       </p>
     <% end %>
     <table class="profile-details">
@@ -58,7 +58,7 @@
   </div>
 
   <% if current_user == @user %>
-    <%= link_to 'Edit Profile', edit_user_registration_path, class: "edit-profile-button" %>
+    <%= link_to 'Edit Profile', edit_user_registration_path, class: "edit-profile-button back-button" %>
   <% end %>
 
 </div>

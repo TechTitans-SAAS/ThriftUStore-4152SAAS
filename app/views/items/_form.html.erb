@@ -1,4 +1,11 @@
+<!--<div class="d-flex justify-content-center align-items-center" style="min-height: 75vh;">-->
+<!--  <div class="text-center">-->
+<!--    <h2 class="mb-4">Create a New Item</h2>-->
 
+<!--  </div>-->
+<!--</div>-->
+<div class="container mt-4">
+  <h1 class="mb-4 text-center">Create and Publish a New Item</h1>
   <%= form_with model: item, local: true, class: "my-4" do |form| %>
     <% if item.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">
@@ -37,9 +44,11 @@
         </div>
 
         <div class="actions">
-          <%= form.submit class: "btn btn-primary" %>
-          <%= link_to 'Back', items_path, class: "btn btn-secondary" %>
+          <%= form.submit class: "btn btn-primary back-button" %>
+          <%= link_to 'Back', items_path, class: "btn btn-secondary back-button" %>
         </div>
       </div>
     </div>
   <% end %>
+
+</div>

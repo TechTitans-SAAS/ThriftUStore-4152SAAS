@@ -5,7 +5,7 @@
       <small>Posted <%= time_ago_in_words(comment.created_at) %> ago</small>
     </div>
     <% if current_user == comment.user %>
-      <div class="button-group">
+      <div class="button-group comment-button-group" >
         <%= button_to "Delete", [item, comment], class: "btn btn-danger btn-sm", method: :delete, data: { confirm: "Are you sure?" } %>
         <%= button_tag "Edit", type: "button", class: "btn btn-primary btn-sm edit-comment-button", data: { comment_id: comment.id } %>
       </div>
