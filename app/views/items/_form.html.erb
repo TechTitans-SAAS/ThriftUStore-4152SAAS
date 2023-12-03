@@ -5,7 +5,13 @@
 <!--  </div>-->
 <!--</div>-->
 <div class="container mt-4">
-  <h1 class="mb-4 text-center">Create and Publish a New Item</h1>
+
+  <% if action_name == 'new' %>
+    <h1 class="mb-4 text-center">Create and Publish a New Item</h1>
+  <% elsif action_name == 'edit' %>
+    <h1 class="mb-4 text-center">Edit an Item</h1>
+  <%end %>
+
   <%= form_with model: item, local: true, class: "my-4" do |form| %>
     <% if item.errors.any? %>
       <div id="error_explanation" class="alert alert-danger">

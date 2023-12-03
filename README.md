@@ -39,7 +39,8 @@ The format should follow ".env_example" file.***
 https://ghoulish-phantom-17472-ad85f4912cba.herokuapp.com/
 
 
-#### The database run in Heroku is PostgreSql, the database run in local is sqlite3. Before push to Heroku, run ``heroku run rake db:migrate`` to update the database in the Heroku and run ``git push heroku main``.
+#### The database run in Heroku is PostgreSql, the database run in local is sqlite3. Before push to Heroku, run ``heroku run rake db:migrate`` to update the database in the Heroku and run ``git push heroku main``. To clear the database, run ``heroku pg:reset postgresql-encircled-88880``.
+``
 
 ## Updates on Sprint2:
 1. Item Comments - We enabled the functionality to allow users to ***add/delete/update*** comments to the items posted to the website.
