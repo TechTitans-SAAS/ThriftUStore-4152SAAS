@@ -13,20 +13,17 @@ class ItemsController < ApplicationController
     end
 
     # Sorting logic
-    if params[:sort].present?
-      sort_direction = params[:direction] == 'desc' ? 'desc' : 'asc'
-
+    if params[:sort].present? && %w[asc desc].include?(params[:direction])
       if params[:sort] == 'owner_rating'
-        # Here, we need a more complex query
-        @items = Item.joins(:user)
-                     .select('items.*, (SELECT AVG(rating) FROM items i WHERE i.user_id = users.id AND rating IS NOT NULL) as avg_rating')
-                     .order("avg_rating #{sort_direction}, items.id")
+        # Adjust this query as per your database schema and associations
+        @items = @items.left_joins(:user)
+                       .group('items.id')
+                       .order(Arel.sql("AVG(items.rating) #{params[:direction]}"))
       else
-        @items = @items.order(params[:sort] => sort_direction)
+        @items = @items.order(params[:sort] => params[:direction])
       end
     end
   end
-
 
   # GET /items/1 or /items/1.json
   def show

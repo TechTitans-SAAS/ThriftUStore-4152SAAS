@@ -17,11 +17,13 @@
       <%= link_to 'Clear Search', items_path(sort: params[:sort], direction: params[:direction]), class: 'btn btn-warning mb-2 ml-2' %>
     <% end %>
 
-    <div class="buttons mb-4" id= "sort_buttons">
-      <%= link_to 'Sort by Price', items_path(search: params[:search], sort: params[:sort] == 'price' && params[:direction] == 'asc' ? nil : 'price', direction: params[:sort] == 'price' && params[:direction] == 'asc' ? nil : 'asc'), class: 'btn btn-link' %>
-      <%= link_to 'Sort by Title', items_path(search: params[:search], sort: params[:sort] == 'title' && params[:direction] == 'asc' ? nil : 'title', direction: params[:sort] == 'title' && params[:direction] == 'asc' ? nil : 'asc'), class: 'btn btn-link' %>
-      <%= link_to 'Sort by Owner Rating', items_path(search: params[:search], sort: 'owner_rating', direction: params[:sort] == 'owner_rating' && params[:direction] == 'asc' ? 'desc' : 'asc'), class: 'btn btn-link' %>
-
+    <div class="buttons mb-4" id="sort_buttons">
+      <% # Define the sort logic for each button %>
+      <% %w[price title owner_rating].each do |field| %>
+        <% direction = params[:sort] == field ? (params[:direction] == 'asc' ? 'desc' : nil) : 'asc' %>
+        <% button_class = params[:sort] == field ? (params[:direction] == 'asc' ? 'btn-primary' : 'btn-secondary') : 'btn-link' %>
+        <%= link_to "Sort by #{field.titleize}", items_path(search: params[:search], sort: direction ? field : nil, direction: direction), class: "btn #{button_class}" %>
+      <% end %>
     </div>
   </div>
 
