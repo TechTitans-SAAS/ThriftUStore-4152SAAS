@@ -74,8 +74,16 @@
     color: #333; /* Text color */
 }
 
-#add-wishlist-button{
-    color: white;
+.btn-secondary {
+    color: white !important;
+}
+
+.btn-primary{
+    color: white !important;
+}
+
+.sort-button-link{
+    color: white !important;
 }
 
 .item-detail-section {
