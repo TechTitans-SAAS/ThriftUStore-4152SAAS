@@ -23,6 +23,16 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       expect(@user_zzc.valid_password?('password')).to be_truthy
     end
 
+    describe 'after_update_path_for' do
+      it 'returns the path to the user profile' do
+        @user_zzc = FactoryBot.create(:user)
+        sign_in @user_zzc
+        allow(controller).to receive(:user_path).with(@user_zzc).and_return('/users/1')
+
+        expect(controller.send(:after_update_path_for, @user_zzc)).to eq('/users/1')
+      end
+    end
+
   end
 end
 

@@ -50,7 +50,7 @@
 }
 
 .owner-details {
-    margin-top: 20px;
+
     top: 100%;
     right: 0;
 }
@@ -59,15 +59,27 @@
     margin-right: 5px;
 }
 
+
+.owner-name{
+    color: blue !important;
+}
+
+.owner-name:hover{
+    background-color: white;
+}
+
 .seller-rating {
     margin-top: 10px;
     font-size: 15px; /* Adjust the font size */
     color: #333; /* Text color */
 }
 
-
+.item-title{
+    margin-top: -20px;
+}
 
 .item-detail-section {
+
     font-size: 20px;
     background-color: #f8f9fa; /* Light background color */
     padding: 15px; /* Padding around the content */
@@ -119,6 +131,7 @@
 /* Styles for "Submit Rating" form */
 .submit-rating-form {
     margin-top: 10px;
+
 }
 
 .submit-rating-form input {
@@ -174,3 +187,8 @@
     display: block;
     margin-bottom: 8px !important; /* Adjust the margin between buttons */
 }
+
+.item-rating-section{
+    margin-bottom: 30px;
+}
+
