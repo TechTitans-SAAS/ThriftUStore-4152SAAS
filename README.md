@@ -13,12 +13,12 @@ Your one-stop marketplace for buying and selling among international students. D
 4. Meixuan Lu - ml4965
 
 ## Updates for the Demo Sprint:
-1. Update the CSS style for the whole website, to make the website visually appealing.
-2. We added the "wish list" feature, where users can add/remove item to/from wish list, and view all items in the wish list.
-3. We added a function to mark an item to be sold by inputting a buyer's email. Once an item is marked as sold, the status will show up on the item page.
-4. The buyer of the item can rate the item numerically from 1 to 5. The item rating will also be shown in the item detail page.
-5. Each user will have a specific rating, where this rating comes from other users who bought the items the current user has posted. And the buyer's rating will shown on the each item page that the user posts.
-6. Add a sort item function based on user's rating.
+1. Revamped the CSS style across the entire website to enhance its visual appeal and overall user experience.
+2. Implemented a new "wish list" feature that allows users to effortlessly add or remove items, as well as conveniently view all items in their wish list.
+3. Introduced a functionality enabling users to mark an item as sold by entering the buyer's email. Once marked as sold, the status will be prominently displayed on the respective item page.
+4. Empowered buyers to numerically rate items on a scale of 1 to 5. The assigned item rating will be prominently showcased on the item detail page.
+5. Implemented a user-specific rating system derived from feedback provided by other users who have purchased items posted by the current user. The buyer's rating will be displayed on each item page associated with the user's postings.
+6. Incorporated a new sorting function allowing users to arrange items based on the seller's rating, providing an additional layer of customization and convenience.
 
 
 ## How To Run:
