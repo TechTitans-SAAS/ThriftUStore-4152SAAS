@@ -28,3 +28,11 @@ Feature: User Profile Management
     When I click the "Cancel my account" button
     #Then I should see a confirmation message "Are you sure?
 
+
+  Scenario: Edit User Profile Successfully - Zip Code
+    When I click the "Edit Profile" button
+    Then I should be on the Edit User page
+    And I fill in "Zip code" with "10025"
+    And I press "Update"
+    Then I am on the Profile page
+
