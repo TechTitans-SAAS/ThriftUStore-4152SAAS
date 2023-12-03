@@ -1,6 +1,11 @@
 <!-- app/views/users/profile.html.erb -->
 
 <div class="profile-page">
+  <% if notice.present? %>
+    <div class="alert alert-success" role="alert" id="notice">
+      <%= notice %>
+    </div>
+  <% end %>
   <h1>User Profile</h1>
 
   <div class="profile-content">
