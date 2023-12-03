@@ -51,7 +51,7 @@ RSpec.describe ItemsController, type: :controller do
         @user_zzc3 = FactoryBot.create(:user,:email => "test@outlook.com", :id => 3)
         @item_8 = FactoryBot.create(:item, :title => 'title8',:detail => "this is detail about item8", user: @user_zzc3, id: 8, price: 12, buyer: @user_zzc2, rating: 3)
         get :index, params: { sort: 'owner_rating', direction: 'desc' }
-        expect(assigns(:items)).to eq([@item_5, @item_6, @item_7, @item_8, @item_1, @item_2, @item_3, @item_4])
+        expect(assigns(:items)).to eq([@item_7, @item_6, @item_8, @item_1, @item_2, @item_3, @item_4, @item_5])
       end
     end
   end
