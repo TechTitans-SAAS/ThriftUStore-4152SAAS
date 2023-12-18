@@ -12,13 +12,23 @@ Your one-stop marketplace for buying and selling among international students. D
 3. Wenjia Zhang - wz2647
 4. Meixuan Lu - ml4965
 
-## Updates for the Demo Sprint:
-1. Revamped the CSS style across the entire website to enhance its visual appeal and overall user experience.
-2. Implemented a new "wish list" feature that allows users to effortlessly add or remove items, as well as conveniently view all items in their wish list.
-3. Introduced a functionality enabling users to mark an item as sold by entering the buyer's email. Once marked as sold, the status will be prominently displayed on the respective item page.
-4. Empowered buyers to numerically rate items on a scale of 1 to 5. The assigned item rating will be prominently showcased on the item detail page.
-5. Implemented a user-specific rating system derived from feedback provided by other users who have purchased items posted by the current user. The buyer's rating will be displayed on each item page associated with the user's postings.
-6. Incorporated a new sorting function allowing users to arrange items based on the seller's rating, providing an additional layer of customization and convenience.
+## Features:
+1. Log in via email and password.
+2. Google SSO login.
+3. Profile page that shows the user's personal information including name, email, address, etc.
+4. The authorized user can modify their own profile or cancel the account.
+5. Market place page that shows all current items with name, price and image
+6. Search Items - users can search by the price and item title.
+7. Sort Items - users can sort the items by price or title or seller's rating in ascending or descending order.
+8. My Item page that shows all items posted by the current user and they can go to the detail page of the items.
+9. Current user can post new items, edit existing items, delete existing items of their own.
+10. Item Detail page that shows the detail of the items including title, description, price, seller's rating, and how many people has added it to the wishlist.
+11. The User can go to the seller and the commenters' profile pages in the item detail page.
+12. Item Comments - users can ***add/delete/update*** comments to the items posted to the website.
+13. Wishlist - users can add or remove an item to their wishlist, as well as conveniently view all items in their wish list.
+14. Sellers can mark an item as sold by entering the buyer's email. Once marked as sold, the status will be prominently displayed on the respective item page.
+15. Buyers can numerically rate items on a scale of 1 to 5 or edit their previous ratings. The assigned item rating will be prominently showcased on the item detail page. The average rating of a users' all items will be also be presented in the item detail page and profile page.
+
 
 
 ## How To Run:
@@ -42,11 +52,5 @@ https://ghoulish-phantom-17472-ad85f4912cba.herokuapp.com/
 #### The database run in Heroku is PostgreSql, the database run in local is sqlite3. Before push to Heroku, run ``heroku run rake db:migrate`` to update the database in the Heroku and run ``git push heroku main``. To clear the database, run ``heroku pg:reset postgresql-encircled-88880``.
 ``
 
-## Updates on Sprint2:
-1. Item Comments - We enabled the functionality to allow users to ***add/delete/update*** comments to the items posted to the website.
-2. Search Items - We implemented the search function to match any potential query on the price and item title.
-3. Filter Items - We implemented the filter function to sort the posted items on price and item name.
-4. Refine the CSS style, including using bootstrap to make the webpage visually appealing.
-5. Add navigation header to each page to allow easy access.
-6. Included some simple test data to the database for demonstration.
-7. Enabled Google Oauth2 login.
+### Link to Github:
+https://github.com/TechTitans-SAAS/ThriftUStore-4152SAAS
